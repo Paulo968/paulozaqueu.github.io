@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="description" content="Portfólio de Paulo Zaqueu - Desenvolvedor e Especialista em Automação Logística.">
+    <title>Paulo Zaqueu | Dev & Automação Logística</title>
+
+    <meta property="og:title" content="Portfólio - Paulo Zaqueu">
+    <meta property="og:description" content="Dev focado em automação e otimização logística.">
+    <meta property="og:type" content="website">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Cores Dark Mode (Default) */
+            --bg-body: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1f252e;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent: #2f81f7;
+            --accent-glow: rgba(47, 129, 247, 0.15);
+            --border: #30363d;
+            --success: #3fb950;
+            --nav-glass: rgba(13, 17, 23, 0.98);
+            --linkedin: #0a66c2;
+            --timeline-line: #30363d;
+        }
+
+        [data-theme="light"] {
+            --bg-body: #ffffff;
+            --bg-card: #f6f8fa;
+            --bg-card-hover: #eaeef2;
+            --text-main: #24292f;
+            --text-muted: #57606a;
+            --accent: #0969da;
+            --accent-glow: rgba(9, 105, 218, 0.1);
+            --border: #d0d7de;
+            --success: #1a7f37;
+            --nav-glass: rgba(255, 255, 255, 0.98);
+            --timeline-line: #d0d7de;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        /* Adicionado: Transição de cor suave para o BODY */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 80px;
+            transition: background-color 0.8s ease, color 0.8s ease; /* Transição de tema */
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: var(--nav-glass);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            /* Adicionado: Transição para borda e fundo da nav */
+            transition: border-bottom-color 0.8s ease, background-color 0.8s ease;
+        }
+        .nav-container {
+            width: 100%; max-width: 1100px; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo {
+            font-weight: 800; font-size: 1.2rem; color: var(--text-main);
+            text-decoration: none; letter-spacing: -1px; position: relative;
+            transition: color 0.8s ease; /* Transição da cor do logo */
+        }
+        .nav-logo::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: -4px;
+            width: 0%; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            transition: width 0.25s ease;
+        }
+        .nav-logo:hover::after { width: 100%; }
+
+        .nav-actions { display: flex; gap: 0.8rem; align-items: center; }
+
+        .btn-icon {
+            width: 40px; height: 40px; border-radius: 8px;
+            border: 1px solid var(--border); background: transparent;
+            color: var(--text-main); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; text-decoration: none; font-size: 1.1rem;
+            transition: all 0.2s, color 0.8s ease, border-color 0.8s ease; /* Transição de tema */
+        }
+        .btn-icon:hover { background: var(--bg-card); border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .btn-linkedin { color: var(--text-main); border-color: var(--border); }
+        .btn-linkedin:hover { color: #fff !important; background: var(--linkedin) !important; border-color: var(--linkedin) !important; }
+
+        .btn-print {
+            background: var(--accent); color: white; border: none;
+            font-weight: 600; font-size: 0.9rem; padding: 0 1rem; width: auto; gap: 0.5rem;
+        }
+        .btn-print:hover { opacity: 0.9; background: var(--accent); color: white; }
+
+        .hide-mobile { display: none; }
+        @media (min-width: 600px) { .hide-mobile { display: inline; } }
+
+        /* Layout */
+        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        /* Hero */
+        .hero { margin-bottom: 3rem; animation: fadeIn 0.8s ease-out; }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            /* Adicionado: Transição para o texto (que usa --text-main/muted) */
+            transition: background 0.8s ease;
+        }
+        .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin-bottom: 1.5rem; }
+        .hero-sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent);
+            background: var(--bg-card); padding: 0.35rem 0.75rem; border-radius: 50px; border: 1px solid var(--border);
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease, color 0.8s ease;
+        }
+
+        /* Tech Stack */
+        .stack-section { margin-bottom: 3rem; }
+        .stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+        @media (min-width: 768px) { .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        .stack-item {
+            background: var(--bg-card); border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border);
+            display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; transition: all 0.2s;
+            /* Adicionado: Transição de tema */
+            transition: all 0.2s, background-color 0.8s ease, border-color 0.8s ease;
+        }
+        .stack-item:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 0 0 1px var(--accent-glow); }
+        .stack-title { font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+        .stack-title i { font-size: 0.9rem; color: var(--accent); }
+        .stack-detail { color: var(--text-muted); font-size: 0.8rem; }
+
+        /* Featured Project */
+        .featured-wrapper { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+        @media (min-width: 900px) { .featured-wrapper { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; } }
+        .featured-card {
+            background: radial-gradient(circle at top left, rgba(47,129,247,0.18), transparent 55%), var(--bg-card);
+            border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); padding: 1.5rem 1.6rem;
+            position: relative; overflow: hidden;
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+        .featured-badge {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #fbbf24;
+            background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 0.25rem 0.6rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.35rem; margin-bottom: 0.75rem;
+        }
+        .featured-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .featured-text { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .featured-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 1.2rem; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+        .chip {
+            border-radius: 999px; border: 1px solid var(--border); padding: 0.25rem 0.6rem;
+            font-size: 0.75rem; color: var(--text-muted); background: var(--bg-card-hover);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+        .featured-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+        .btn-cta {
+            border-radius: 999px; padding: 0.5rem 1rem; font-size: 0.85rem; cursor: pointer; border: none;
+            display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; transition: all 0.2s;
+        }
+        .btn-cta-primary { background: linear-gradient(135deg, #facc15, #f97316); color: #0b1020; font-weight: 600; }
+        .btn-cta-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 25px rgba(251, 191, 36, 0.35); }
+        .btn-cta-ghost { background: transparent; color: var(--accent); border: 1px solid var(--border); }
+        .btn-cta-ghost:hover { border-color: var(--accent); background: var(--bg-card-hover); }
+
+        .featured-video-wrapper {
+            background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 0.75rem;
+        }
+        .featured-video-note {
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;
+        }
+
+        /* Estilo da Capa de Vídeo */
+        .featured-video {
+            width: 100%; border-radius: 12px; border: 1px solid var(--border); background: #000;
+            aspect-ratio: 16 / 9; position: relative; overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            group: video-group;
+        }
+        .featured-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+
+        .video-cover {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            /* Capa do YouTube do seu vídeo - Usando hqdefault para garantir que apareça */
+            background-image: url('https://img.youtube.com/vi/pk9YAf2hNTM/hqdefault.jpg'); 
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 5;
+            transition: transform 0.5s ease;
+        }
+        .video-cover::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            transition: background 0.3s;
+        }
+        .featured-video:hover .video-cover { transform: scale(1.05); }
+        .featured-video:hover .video-cover::after { background: rgba(0,0,0,0.1); }
+
+        .play-btn {
+            width: 70px; height: 70px; 
+            background: rgba(47, 129, 247, 0.85);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.8rem; padding-left: 5px;
+            z-index: 6; 
+            box-shadow: 0 0 20px rgba(47, 129, 247, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .featured-video:hover .play-btn {
+            transform: scale(1.1);
+            background: rgba(47, 129, 247, 1);
+            box-shadow: 0 0 30px rgba(47, 129, 247, 0.6);
+        }
+
+        .video-fallback-link {
+            display: block;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .video-fallback-link:hover { text-decoration: underline; color: var(--accent); }
+
+        /* Stats */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 4rem; }
+        @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem;
+            border-radius: 12px; text-align: center; 
+            /* Adicionado: Transição de tema */
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.8s ease, background-color 0.8s ease;
+        }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(15, 23, 42, 0.6); }
+        .stat-val { display: block; font-size: 2rem; font-weight: 800; color: var(--success); margin-bottom: 0.2rem; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+        /* NOVO: Estilo de Troféu/Ouro para o Prêmio (4º card) */
+        .stat-card:nth-child(4) {
+            background: radial-gradient(circle at top left, rgba(253, 230, 138, 0.25), transparent 70%), var(--bg-card);
+            border-color: #FFD700; /* Ouro Puro */
+            box-shadow: 0 0 20px rgba(253, 230, 138, 0.3);
+            transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease, transform 0.2s;
+        }
+        .stat-card:nth-child(4) .stat-val {
+            color: #FFD700; /* Cor do texto do valor em ouro */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+        .stat-card:nth-child(4):hover {
+            transform: scale(1.05); /* Mais destaque no hover */
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+        /* FIM DO NOVO ESTILO DE OURO */
+
+
+        /* Sections */
+        h2 { font-size: 1.4rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; color: var(--text-main); }
+        h2 i { color: var(--accent); }
+
+        /* Projects & Timeline */
+        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 4rem; }
+        @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+            display: flex; flex-direction: column; justify-content: space-between; height: 100%; transition: all 0.2s; position: relative; z-index: 1;
+            /* Adicionado: Transição de tema */
+            transition: all 0.2s, background-color 0.8s ease, border-color 0.8s ease;
+        }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); background: var(--bg-card-hover); z-index: 2; }
+        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .project-header i { font-size: 1.5rem; color: var(--accent); }
+
+        /* NOVO: Ícone de Troféu Dourado para Projetos Destacados */
+        .project-header i.featured-icon { 
+            color: #FFD700; /* Ouro Puro */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.7); /* Brilho */
+        }
+        /* FIM DO NOVO ESTILO DE OURO */
+
+        .project-link-icon { color: var(--text-muted); font-size: 1.2rem; padding: 8px; transition: color 0.2s; cursor: pointer; display: inline-block; text-decoration: none; }
+        .project-link-icon:hover { color: var(--accent); }
+        .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
+        .project-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1; }
+        .project-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; display: flex; gap: 0.5rem; align-items: center; }
+
+        .timeline { border-left: 2px solid var(--timeline-line); padding-left: 2rem; margin-left: 0.5rem; position: relative;
+            /* Adicionado: Transição de tema para a linha do tempo */
+            transition: border-left-color 0.8s ease;
+        }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.4rem; top: 0.4rem; width: 12px; height: 12px;
+            background: var(--accent); border: 3px solid var(--bg-body); border-radius: 50%; z-index: 2;
+            /* Adicionado: Transição de tema para a borda do ponto */
+            transition: border-color 0.8s ease;
+        }
+        .job-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .job-company { color: var(--accent); font-weight: 600; font-size: 1rem; }
+        .job-date { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem; font-family: 'JetBrains Mono', monospace; }
+        .job-desc li { list-style: none; position: relative; padding-left: 1.2rem; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.95rem; }
+        .job-desc li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+
+        .promotion-track { margin-top: 1rem; border-left: 1px dashed var(--border); padding-left: 1.5rem; margin-left: 0.5rem; }
+        .promotion-item { position: relative; margin-bottom: 2rem; }
+        .promotion-item:last-child { margin-bottom: 0; }
+        .promotion-item::before {
+            content: ''; position: absolute; left: -1.85rem; top: 0.5rem; width: 8px; height: 8px;
+            background: var(--bg-card); border: 2px solid var(--text-muted); border-radius: 50%;
+        }
+        .promotion-title { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
+
+        .education-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; 
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+
+        footer { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; 
+            /* Adicionado: Transição de tema para borda e cor do texto */
+            transition: border-top-color 0.8s ease, color 0.8s ease;
+        }
+
+        /* Classes de animação existentes... */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media print {
+            body { background: white; color: black; padding-top: 0; }
+            .navbar, .btn-icon, .no-print, .footer-icons { display: none !important; }
+            .container { max-width: 100%; padding: 0; }
+            .stat-card, .project-card, .education-card { border: 1px solid #ccc; break-inside: avoid; }
+            h1 { color: black; -webkit-text-fill-color: black; }
+            .promotion-track { border-left: 2px solid #ccc; }
+
+            /* Regras de impressão de vídeo */
+            .featured-video-wrapper { break-inside: avoid; }
+            .featured-video iframe { display: none; } 
+            .featured-video::after { content: "Vídeo disponível na versão online."; display: block; padding: 2rem; text-align: center; border: 1px dashed #ccc; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- REMOVIDO: Canvas Overlay para o Efeito Digital Grid. A transição agora é nativa. -->
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">PZ.</a>
+            <div class="nav-actions">
+                <!-- Botão Tema -->
+                <button class="btn-icon" id="theme-toggle" title="Mudar Tema">
+                    <i class="fas fa-sun"></i>
+                </button>
+
+                <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer" class="btn-icon btn-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <button class="btn-icon btn-print" onclick="window.print()">
+                    <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- Hero -->
+        <section class="hero reveal">
+            <p style="color: var(--accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 0.5rem;">OLÁ, EU SOU</p>
+            <h1>Paulo Zaqueu de Oliveira Jr.</h1>
+            <p class="hero-sub">
+                Dev & Automação Logística · Python · RPA · SAP SD/MM/WM · Firebase · IA aplicada em jogos.
+            </p>
+            <p>
+                <strong style="color: var(--text-main);">Dev & Automação Logística</strong> com foco em tirar peso operacional da equipe
+                criando automações inteligentes – de bots para o CREA a um jogo de damas com IA e multiplayer online.
+            </p>
+
+            <div class="tags-container">
+                <span class="tag">SAP SD/MM/WM</span>
+                <span class="tag">Python (Pandas/Selenium)</span>
+                <span class="tag">RPA & Automação</span>
+                <span class="tag">JavaScript / Firebase</span>
+                <span class="tag">Supply Chain</span>
+                <span class="tag">5S & Kaizen</span>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="stack-section reveal">
+            <h2><i class="fas fa-layer-group"></i> Tech Stack & Ferramentas</h2>
+            <div class="stack-grid">
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fab fa-python"></i>Python & RPA</div>
+                    <div class="stack-detail">Pandas, Selenium, automação de rotinas fiscais e lançamentos no CREA-MG.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fab fa-js-square"></i>JavaScript & Frontend</div>
+                    <div class="stack-detail">HTML5, CSS3, jogos com canvas, web workers e UI responsiva.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-database"></i>Firebase & Realtime</div>
+                    <div class="stack-detail">Multiplayer online, estados em tempo real e sincronização de partidas.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-boxes"></i>SAP SD/MM/WM</div>
+                    <div class="stack-detail">Operação ponta a ponta, estoque, reabastecimento e automações integradas.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-robot"></i>Automação de Planilhas</div>
+                    <div class="stack-detail">VBA, Power Query, integração com SAP e relatórios automáticos.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-chart-line"></i>Logística & Indicadores</div>
+                    <div class="stack-detail">Acuracidade de estoque, perdas, FEFO, produtividade e eficiência operacional.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destaque: Jogo de Damas -->
+        <section class="reveal">
+            <div class="featured-wrapper">
+                <div class="featured-card">
+                    <div class="featured-badge">
+                        <i class="fas fa-star"></i> Projeto Destaque · IA em Jogo de Damas
+                    </div>
+                    <div class="featured-title">Damas IA Grão-Mestre</div>
+                    <p class="featured-text">
+                        Jogo de damas desenvolvido do zero usando HTML, CSS e JavaScript, com uma inteligência artificial
+                        baseada em heurística de avaliação e poda Alfa-Beta, modos de treino e multiplayer online com Firebase.
+                    </p>
+                    <div class="featured-meta">
+                        ● Minimax & Alfa-Beta · Heurística customizada · IA evolutiva com ajustes · Multiplayer em tempo real
+                    </div>
+                    <div class="chip-row">
+                        <span class="chip">Minimax</span>
+                        <span class="chip">Poda Alfa-Beta</span>
+                        <span class="chip">Heurística própria</span>
+                        <span class="chip">Firebase Realtime DB</span>
+                        <span class="chip">UI Responsiva</span>
+                    </div>
+                    <div class="featured-actions">
+                        <a href="https://damas-ia-graomestre.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-primary">
+                            <i class="fas fa-play"></i> Jogar agora
+                        </a>
+                        <a href="https://github.com/Paulo968/damas-ia-graomestre" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-ghost">
+                            <i class="fab fa-github"></i> Ver código no GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="featured-video-wrapper">
+                    <div class="featured-video-note">
+                        <i class="fas fa-video"></i>
+                        <span>Dica: clique na imagem para ver a demo.</span>
+                    </div>
+
+                    <!-- Container com CAPA + VÍDEO -->
+                    <div class="featured-video" onclick="playVideo(this)">
+                        <!-- Capa com Imagem e Botão Play -->
+                        <div class="video-cover">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+
+                        <!-- Iframe (inicialmente escondido ou carregado sob demanda) -->
+                        <div id="video-placeholder"></div>
+                    </div>
+
+                    <!-- Botão de Fallback (Segurança) -->
+                    <a href="https://www.youtube.com/watch?v=pk9YAf2hNTM" target="_blank" class="video-fallback-link">
+                        <i class="fab fa-youtube"></i> Se o vídeo não carregar, clique aqui para assistir no YouTube
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-grid reveal">
+            <div class="stat-card">
+                <span class="stat-val">+400%</span>
+                <span class="stat-label">Produtividade (RPA)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-val">-30%</span>
+                <span class="stat-label">Perdas Operacionais</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-val">99.8%</span>
+                <span class="stat-label">Acuracidade Estoque</span>
+            </div>
+            <!-- ESTE É O STAT CARD COM O TROFÉU DE OURO -->
+            <div class="stat-card">
+                <span class="stat-val">#1</span>
+                <span class="stat-label">Prêmio Global Coty</span>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="reveal">
+            <h2 id="projects"><i class="fas fa-code-branch"></i> Projetos & Automação</h2>
+            <div class="projects-grid" id="github-projects">
+                <p style="color: var(--text-muted);">Carregando portfólio...</p>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="reveal">
+            <h2 id="experience"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
+            <div class="timeline">
+
+                <!-- 1. AP AGRÍCOLA -->
+                <div class="timeline-item">
+                    <div class="job-title">Faturista & Desenvolvedor de Automação</div>
+                    <div class="job-company">AP Agrícola</div>
+                    <span class="job-date">Nov 2023 - Atual | Passos, MG</span>
+                    <ul class="job-desc">
+                        <li>Desenvolvimento de bot RPA (**Python/Selenium**) para lançamentos no CREA-MG (**+400% produtividade**).</li>
+                        <li>Padronização da solução em 7 filiais, eliminando erros manuais.</li>
+                    </ul>
+                </div>
+
+                <!-- 2. COOPERCITRUS -->
+                <div class="timeline-item">
+                    <div class="job-title">Líder de Depósito</div>
+                    <div class="job-company">Coopercitrus</div>
+                    <span class="job-date">Mar 2023 - Nov 2023 | Passos, MG</span>
+                    <ul class="job-desc">
+                        <li>Liderança de equipe (6 colaboradores) e operação logística **SAP MM/WM**.</li>
+                        <li>Implementação de **FEFO e 5S** (Redução de 30% em perdas).</li>
+                    </ul>
+                </div>
+
+                <!-- 3. MINASBEB DISTRIBUIDORA - REINSERIDO AQUI -->
+                <div class="timeline-item">
+                    <div class="job-title">Analista de Controle de Qualidade Logística</div>
+                    <div class="job-company">Minasbeb Distribuidora</div>
+                    <span class="job-date">Jul 2022 - Dez 2022 | Passos, MG</span>
+                    <ul class="job-desc">
+                        <li>Condução de análises de estoque e implementação de estratégias de armazenagem (+20% de espaço).</li>
+                        <li>Elevei a acuracidade de estoque para **99,8%**.</li>
+                        <li>Apoio em recebimento, inventário físico e aplicação de **5S**.</li>
+                    </ul>
+                </div>
+
+                <!-- 4. COTY BRASIL (TRAJETÓRIA COMPLETA) -->
+                <div class="timeline-item">
+                    <div class="job-title">Coty Brasil (Trajetória de Crescimento)</div>
+                    <div class="job-company">Coty Brasil | Goiânia, GO</div>
+                    <span class="job-date">Dez 2016 - Jul 2022</span>
+                    <div class="promotion-track">
+
+                        <!-- LÍDER DE EXPEDIÇÃO -->
+                        <div class="promotion-item">
+                            <div class="promotion-title">Líder de Expedição</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Abr 2022 - Jul 2022</span>
+                            <ul class="job-desc">
+                                <li>Supervisionei equipe em processos de expedição, armazenagem e recebimento.</li>
+                                <li>Utilizei **SAP WM** em operações de Picking, Aéreo, Drive e Flowrec.</li>
+                            </ul>
+                        </div>
+
+                        <!-- ASSISTENTE DE LOGÍSTICA (AUTOMAÇÃO E PRÊMIO) -->
+                        <div class="promotion-item">
+                            <div class="promotion-title">Assistente de Logística</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2020 - Mar 2022</span>
+                            <ul class="job-desc">
+                                <li>Desenvolvi e implementei **automação de reabastecimento (VBA + Power Query)**, com integração em tempo real ao **SAP WM**, otimizando o controle de estoque e falhas.</li>
+                                <li>Atuação em cadastramento de materiais, picking e inventário rotativo no SAP WM.</li>
+                                <li>Gerenciei DTs de separação e suporte operacional. **Conquista:** Prêmio 1º Lugar Global em Eficiência de Custos.</li>
+                            </ul>
+                        </div>
+
+                        <!-- CONFERENTE / OPERADOR DE EMPILHADEIRA -->
+                        <div class="promotion-item">
+                            <div class="promotion-title">Conferente / Operador de Empilhadeira</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Jan 2019 - Nov 2020</span>
+                            <ul class="job-desc">
+                                <li>Descarregava pallets (operação de empilhadeira) e realizava conferência de materiais via coletor de dados.</li>
+                                <li>Garantia conformidade com notas fiscais e acuracidade de estoque.</li>
+                                <li>Apoiei assistentes de logística no SAP WM em movimentações e reabastecimentos.</li>
+                            </ul>
+                        </div>
+
+                        <!-- AUXILIAR DE EXPEDIÇÃO -->
+                         <div class="promotion-item">
+                            <div class="promotion-title">Auxiliar de Expedição</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2016 - Dez 2018</span>
+                            <ul class="job-desc">
+                                <li>Separação e conferência de produtos acabados com coletor de dados.</li>
+                                <li>Organização de áreas de picking e docas com **5S**.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIM DA EXPERIÊNCIA -->
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="reveal">
+            <h2><i class="fas fa-graduation-cap"></i> Formação</h2>
+            <div class="education-card">
+                <div class="job-title">Tecnólogo em Logística</div>
+                <div class="job-company">UniFatecie</div>
+                <span class="job-date">Em andamento</span>
+            </div>
+            <div class="education-card">
+                <div class="job-title">Cursos Relevantes</div>
+                <ul class="job-desc" style="margin-top:0.5rem;">
+                    <li>SAP Overview & MM1-MM6</li>
+                    <li>Python & Análise de Dados</li>
+                    <li>Inteligência Artificial & Copilot</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-icons">
+            <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:paulozaqueu3@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">paulozaqueu3@gmail.com</p>
+        <p>&copy; 2025 Paulo Zaqueu de Oliveira Jr.</p>
+    </footer>
+
+    <script>
+        // === FUNÇÃO PLAY VIDEO ===
+        function playVideo(container) {
+            const placeholder = container.querySelector('#video-placeholder');
+            const cover = container.querySelector('.video-cover');
+
+            // Tenta carregar o vídeo
+            placeholder.innerHTML = `
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/pk9YAf2hNTM?autoplay=1&rel=0&modestbranding=1" 
+                    title="Video Demo" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+
+            // Fade out da capa
+            cover.style.opacity = '0';
+            setTimeout(() => {
+                cover.style.display = 'none';
+            }, 300);
+        }
+
+        // === GITHUB PROJECTS ===
+        const githubUser = 'Paulo968';
+        const fallbackUrl = "https://github.com/Paulo968";
+
+        // 1. Destaque Principal (Damas)
+        const featuredProject = {
+            name: "damas-ia-graomestre",
+            description: "Jogo de Damas com IA avançada (Minimax + Alfa-Beta), heurística própria e multiplayer online.",
+            language: "JS / Firebase",
+            html_url: "https://damas-ia-graomestre.vercel.app/", 
+            isFeatured: true
+        };
+
+        // 2. Destaque Secundário (CREA BOT - Descrição Turbo baseada no README)
+        // ADICIONADO: manual_url para apontar para o arquivo novo
+        const creaBotProject = {
+            name: "crea-rpa-bot",
+            description: "Automação RPA (Python + Selenium) do portal CREA-MG. Interface moderna (CustomTkinter), validação inteligente e +400% de produtividade em 7 filiais.",
+            language: "Python",
+            html_url: "https://github.com/Paulo968/crea-rpa-bot",
+            manual_url: "manual.html",
+            isFeatured: false
+        };
+
+        // 3. Projetos Manuais (Fallback)
+        const manualProjects = [
+            // O crea-bot já está definido acima, então não precisamos repetir aqui se a lógica de carga estiver certa
+            { name: "sap-reabastecimento-tool", description: "Ferramenta VBA + SAP WM para reposição de estoque.", language: "VBA", html_url: fallbackUrl },
+            { name: "dashboard-logistica", description: "Painel de indicadores FEFO e Curva ABC.", language: "Analytics", html_url: fallbackUrl }
+        ];
+
+        async function loadProjects() {
+            const container = document.getElementById('github-projects');
+            // Inicia a lista já com os dois projetos principais "travados" no topo
+            let finalProjects = [featuredProject, creaBotProject];
+
+            try {
+                // A API do GitHub tem limite de requests, então o fallback é importante.
+                const res = await fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=5`);
+                if (res.ok) {
+                    const githubData = await res.json();
+                    // Filtra para não duplicar o Damas nem o CREA Bot (pois já adicionamos manualmente com descrições melhores)
+                    const filtered = githubData.filter(r => 
+                        !r.name.toLowerCase().includes('damas') && 
+                        !r.name.toLowerCase().includes('crea')
+                    );
+                    finalProjects = finalProjects.concat(filtered);
+                } else { 
+                    // Fallback se a API falhar
+                    finalProjects = finalProjects.concat(manualProjects); 
+                }
+            } catch (e) { 
+                // Fallback se houver erro de rede
+                finalProjects = finalProjects.concat(manualProjects); 
+            }
+            renderProjects(finalProjects, container);
+        }
+
+        function renderProjects(projects, container) {
+            container.innerHTML = projects.map(p => {
+                // Se for featuredProject, usa o ícone de troféu dourado (.featured-icon)
+                const iconClass = p.isFeatured ? "fas fa-trophy featured-icon" : "far fa-folder-open";
+                const bgStyle = p.isFeatured ? "background: linear-gradient(to bottom right, var(--bg-card), rgba(245, 158, 11, 0.05)); border-color: #f59e0b;" : "";
+                const safeLink = p.html_url || fallbackUrl;
+                // Formatação simples do nome do repositório (ex: damas-ia-graomestre -> Damas Ia Graomestre)
+                const name = (p.name || "").replace(/-/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+
+                // LÓGICA NOVA: Botão do Manual (se existir)
+                const manualBtn = p.manual_url 
+                    ? `<a href="${p.manual_url}" target="_blank" class="project-link-icon" title="Ver Manual" style="margin-left: 0.5rem;"><i class="fas fa-book"></i></a>`
+                    : '';
+
+                return `
+                <div class="project-card" style="${bgStyle}">
+                    <div class="project-header">
+                        <i class="${iconClass}"></i>
+                        <div style="display:flex; align-items:center;">
+                            ${manualBtn}
+                            <a href="${safeLink}" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-title">${name}</div>
+                    <div class="project-desc">${p.description || "Projeto de tecnologia."}</div>
+                    <div class="project-meta"><span style="color: ${p.isFeatured ? '#f59e0b' : 'var(--accent)'};">●</span> ${p.language || "Code"}</div>
+                </div>`;
+            }).join('');
+        }
+
+        // === SCROLL REVEAL ===
+        // Observador de Interseção para animar elementos que entram na tela
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 }); // Começa a animar quando 15% do elemento estiver visível
+        revealEls.forEach(el => observer.observe(el));
+
+        // Carrega projetos ao iniciar
+        loadProjects();
+
+        // ==============================================
+        //  LÓGICA SIMPLIFICADA E FLUIDA DE TROCA DE TEMA
+        // ==============================================
+        const themeToggle = document.getElementById('theme-toggle');
+
+        function updateTheme() {
+             // 1. Verifica o estado atual
+            const isCurrentlyLight = document.body.hasAttribute('data-theme');
+
+            if (isCurrentlyLight) {
+                // Se está claro, muda para escuro (remove o atributo)
+                document.body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                // Se está escuro, muda para claro (adiciona o atributo)
+                document.body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        }
+
+        // Inicializa o ícone baseado no estado (em caso de preferência do sistema)
+        if (document.body.hasAttribute('data-theme')) {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        // 2. Adiciona o listener simples. O CSS faz a transição!
+        themeToggle.addEventListener('click', updateTheme);
+
+    </script>
+</body>
+</html>
