@@ -10,10 +10,6 @@
     <meta property="og:title" content="Portfólio - Paulo Zaqueu">
     <meta property="og:description" content="Dev focado em automação e otimização logística.">
     <meta property="og:type" content="website">
-    <!-- NOVO: SEO Melhorado -->
-    <meta property="og:url" content="https://paulozaqueu.dev/">
-    <meta property="og:image" content="https://paulozaqueu.dev/assets/paulo-zaqueu-thumb.jpg">
-    <link rel="canonical" href="https://paulozaqueu.dev/">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,8 +39,7 @@
             --bg-card: #f6f8fa;
             --bg-card-hover: #eaeef2;
             --text-main: #24292f;
-            /* AJUSTE DE VISIBILIDADE: Escurecido para melhorar o contraste no modo claro */
-            --text-muted: #40464f; 
+            --text-muted: #57606a;
             --accent: #0969da;
             --accent-glow: rgba(9, 105, 218, 0.1);
             --border: #d0d7de;
@@ -108,27 +103,12 @@
         .btn-linkedin { color: var(--text-main); border-color: var(--border); }
         .btn-linkedin:hover { color: #fff !important; background: var(--linkedin) !important; border-color: var(--linkedin) !important; }
 
-        /* REMOVIDO: Estilos para o botão PDF */
-
+        /* REMOVIDO: Estilo do botão de PDF/Print */
         .hide-mobile { display: none; }
         @media (min-width: 600px) { .hide-mobile { display: inline; } }
 
-        /* NOVO: Foco para Acessibilidade */
-        .btn-icon:focus-visible,
-        .featured-video[tabindex="0"]:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-            border-color: var(--accent);
-        }
-
         /* Layout */
-        /* MELHORIA RESPONSIVA: O padding do container garante espaçamento em telas muito pequenas */
-        .container { 
-            width: 100%; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 2rem 1.5rem 4rem; /* Padding horizontal de 1.5rem (24px) para respiro */
-        }
+        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
         /* Hero */
         .hero { margin-bottom: 3rem; animation: fadeIn 0.8s ease-out; }
@@ -155,16 +135,10 @@
             transition: background-color 0.8s ease, border-color 0.8s ease, color 0.8s ease;
         }
 
-        /* Tech Stack & Como posso te ajudar */
+        /* Tech Stack */
         .stack-section { margin-bottom: 3rem; }
-        /* MELHORIA RESPONSIVA: Usando auto-fit e minmax para layout de grade fluida e adaptativa */
-        .stack-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit para preencher o espaço */
-            gap: 0.75rem; 
-        }
-        /* REMOVIDA: Media query anterior para .stack-grid, pois auto-fit/minmax faz o trabalho */
-        
+        .stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+        @media (min-width: 768px) { .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         .stack-item {
             background: var(--bg-card); border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border);
             display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; transition: all 0.2s;
@@ -177,14 +151,44 @@
         .stack-detail { color: var(--text-muted); font-size: 0.8rem; }
 
         /* Featured Project */
+        /* Estilo para dar destaque visual ao Card de Automação/Damas */
         .featured-wrapper { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
-        /* MELHORIA RESPONSIVA: Usando uma media query mais simples para garantir que a coluna lateral seja flexível */
-        @media (min-width: 900px) { 
-            .featured-wrapper { 
-                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); /* 55% / 45% flexível */
-                align-items: center; 
-            } 
+        @media (min-width: 900px) { .featured-wrapper { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; } }
+        
+        /* NOVO: Estilo para a nova seção de Destaque de Automação (topo) */
+        .automation-highlight {
+            background: var(--bg-card); /* Mantido para ter a transição de tema */
+            border-radius: 16px; 
+            border: 1px solid var(--border); 
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 3.5rem; /* Espaçamento da seção superior */
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.3); /* Uma sombra leve para destacar */
+            /* Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
         }
+        .automation-highlight-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .automation-highlight-header i {
+            font-size: 2rem;
+            color: var(--success); /* Cor verde para sucesso/lucro */
+        }
+        .automation-highlight-header h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-main);
+        }
+        .automation-highlight-text {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        /* FIM NOVO ESTILO */
+
         .featured-card {
             background: radial-gradient(circle at top left, rgba(47,129,247,0.18), transparent 55%), var(--bg-card);
             border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); padding: 1.5rem 1.6rem;
@@ -281,7 +285,6 @@
 
         /* Stats */
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 4rem; }
-        /* MELHORIA RESPONSIVA: Mantido media query para 4 colunas em telas maiores, mas com 2 colunas no default (mobile) */
         @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .stat-card {
             background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem;
@@ -316,14 +319,15 @@
         h2 i { color: var(--accent); }
 
         /* Projects & Timeline */
-        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 4rem; }
-        /* MELHORIA RESPONSIVA: Usando auto-fit e minmax para os cartões de projeto */
-        @media (min-width: 768px) { 
-            .projects-grid { 
-                /* Se precisar de no mínimo 3 colunas em telas maiores: */
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            } 
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.5rem; 
+            margin-bottom: 4rem; 
+            /* Ajustado: Margem inferior menor, pois a nova seção de destaque já tem espaçamento */
+            margin-bottom: 2rem; 
         }
+        @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
         .project-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
             display: flex; flex-direction: column; justify-content: space-between; height: 100%; transition: all 0.2s; position: relative; z-index: 1;
@@ -390,6 +394,7 @@
 
         @media print {
             body { background: white; color: black; padding-top: 0; }
+            /* Deixa explícito que todos os botões e nav devem sumir na impressão */
             .navbar, .btn-icon, .no-print, .footer-icons { display: none !important; }
             .container { max-width: 100%; padding: 0; }
             .stat-card, .project-card, .education-card { border: 1px solid #ccc; break-inside: avoid; }
@@ -405,25 +410,26 @@
 </head>
 <body>
 
+    <!-- REMOVIDO: Canvas Overlay para o Efeito Digital Grid. A transição agora é nativa. -->
+
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo" aria-label="Voltar ao topo">PZ.</a>
+            <a href="#" class="nav-logo">PZ.</a>
             <div class="nav-actions">
-                <!-- Botão Tema (AGORA COM ACESSIBILIDADE) -->
-                <button 
-                    class="btn-icon" 
-                    id="theme-toggle" 
-                    title="Mudar Tema"
-                    aria-label="Mudar tema claro/escuro"
-                    aria-pressed="false"
-                >
+                <!-- Botão Tema -->
+                <button class="btn-icon" id="theme-toggle" title="Mudar Tema">
                     <i class="fas fa-sun"></i>
                 </button>
 
                 <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer" class="btn-icon btn-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <!-- REMOVIDO: Botão de PDF/Download -->
+                
+                <!-- REMOVIDO: BOTÃO DE PDF/PRINT
+                <button class="btn-icon btn-print" onclick="window.print()">
+                    <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
+                </button> 
+                -->
             </div>
         </div>
     </nav>
@@ -452,30 +458,29 @@
             </div>
         </section>
 
-        <!-- NOVO: Como Posso Te Ajudar (Ideia de Evolução) -->
-        <section class="stack-section reveal">
-            <h2><i class="fas fa-handshake"></i> Como posso te ajudar?</h2>
-            <!-- AGORA FLUIDO: Usa auto-fit/minmax -->
-            <div class="stack-grid">
-                <div class="stack-item">
-                    <div class="stack-title"><i class="fas fa-flask"></i> Automatizar & Inovar</div>
-                    <div class="stack-detail">Automatizo rotinas chatas (fiscal, SAP, planilhas) com Python/RPA para focar no que realmente importa.</div>
-                </div>
-                <div class="stack-item">
-                    <div class="stack-title"><i class="fas fa-truck-loading"></i> Otimizar Logística</div>
-                    <div class="stack-detail">Otimizo operações de estoque (FEFO/5S/SAP WM) e Supply Chain, reduzindo perdas e aumentando a acuracidade.</div>
-                </div>
-                <div class="stack-item">
-                    <div class="stack-title"><i class="fas fa-desktop"></i> Criar Soluções Web</div>
-                    <div class="stack-detail">Desenvolvo soluções web simples e funcionais (jogos com IA, dashboards, ferramentas customizadas).</div>
-                </div>
+        <!-- NOVO: Destaque de Automação (Mova isso para o topo, é o seu maior impacto) -->
+        <section class="automation-highlight reveal">
+            <div class="automation-highlight-header">
+                <i class="fas fa-chart-line"></i>
+                <h3>Automação de Alto Impacto: +400% de Produtividade</h3>
+            </div>
+            <p class="automation-highlight-text">
+                Desenvolvi um **Bot RPA** (Python + Selenium) completo para automatizar lançamentos complexos no portal do **CREA-MG**. A solução foi padronizada e implementada em 7 filiais, resultando em uma eliminação quase total de erros manuais e um ganho de produtividade de mais de **400%** para a equipe de faturamento.
+            </p>
+            <div class="featured-actions">
+                 <a href="https://github.com/Paulo968/crea-rpa-bot" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-primary" style="background: var(--success); color: white;">
+                    <i class="fab fa-python"></i> Ver Bot Python (GitHub)
+                </a>
+                <a href="#projects" class="btn-cta btn-cta-ghost">
+                    <i class="fas fa-code-branch"></i> Ver outros projetos
+                </a>
             </div>
         </section>
+
 
         <!-- Tech Stack -->
         <section class="stack-section reveal">
             <h2><i class="fas fa-layer-group"></i> Tech Stack & Ferramentas</h2>
-            <!-- AGORA FLUIDO: Usa auto-fit/minmax -->
             <div class="stack-grid">
                 <div class="stack-item">
                     <div class="stack-title"><i class="fab fa-python"></i>Python & RPA</div>
@@ -504,7 +509,28 @@
             </div>
         </section>
 
-        <!-- Destaque: Jogo de Damas -->
+        <!-- Stats -->
+        <section class="stats-grid reveal">
+            <div class="stat-card">
+                <span class="stat-val">+400%</span>
+                <span class="stat-label">Produtividade (RPA)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-val">-30%</span>
+                <span class="stat-label">Perdas Operacionais</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-val">99.8%</span>
+                <span class="stat-label">Acuracidade Estoque</span>
+            </div>
+            <!-- ESTE É O STAT CARD COM O TROFÉU DE OURO -->
+            <div class="stat-card">
+                <span class="stat-val">#1</span>
+                <span class="stat-label">Prêmio Global Coty</span>
+            </div>
+        </section>
+        
+        <!-- Destaque: Jogo de Damas (Mantenha este aqui, pois é seu projeto mais "dev") -->
         <section class="reveal">
             <div class="featured-wrapper">
                 <div class="featured-card">
@@ -542,15 +568,8 @@
                         <span>Dica: clique na imagem para ver a demo.</span>
                     </div>
 
-                    <!-- Container com CAPA + VÍDEO (AGORA COM ACESSIBILIDADE PARA TECLADO) -->
-                    <div 
-                        class="featured-video" 
-                        id="video-cover-btn" 
-                        role="button" 
-                        tabindex="0" 
-                        onclick="playVideo(this)"
-                        aria-label="Clique para assistir a demonstração do Jogo de Damas com IA"
-                    >
+                    <!-- Container com CAPA + VÍDEO -->
+                    <div class="featured-video" onclick="playVideo(this)">
                         <!-- Capa com Imagem e Botão Play -->
                         <div class="video-cover">
                             <div class="play-btn">
@@ -570,32 +589,12 @@
             </div>
         </section>
 
-        <!-- Stats -->
-        <section class="stats-grid reveal">
-            <div class="stat-card">
-                <span class="stat-val">+400%</span>
-                <span class="stat-label">Produtividade (RPA)</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-val">-30%</span>
-                <span class="stat-label">Perdas Operacionais</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-val">99.8%</span>
-                <span class="stat-label">Acuracidade Estoque</span>
-            </div>
-            <!-- ESTE É O STAT CARD COM O TROFÉU DE OURO -->
-            <div class="stat-card">
-                <span class="stat-val">#1</span>
-                <span class="stat-label">Prêmio Global Coty</span>
-            </div>
-        </section>
 
         <!-- Projects -->
         <section class="reveal">
             <h2 id="projects"><i class="fas fa-code-branch"></i> Projetos & Automação</h2>
             <div class="projects-grid" id="github-projects">
-                <!-- A mensagem "Carregando portfólio..." é mantida no JS -->
+                <!-- Alteração: Removida a margem inferior extra do projects-grid no CSS. -->
                 <p style="color: var(--text-muted);">Carregando portfólio...</p>
             </div>
         </section>
@@ -606,12 +605,13 @@
             <div class="timeline">
 
                 <!-- 1. AP AGRÍCOLA -->
+                <!-- REFORÇO NO DESTAQUE DE RPA NA DESCRIÇÃO -->
                 <div class="timeline-item">
                     <div class="job-title">Faturista & Desenvolvedor de Automação</div>
                     <div class="job-company">AP Agrícola</div>
                     <span class="job-date">Nov 2023 - Atual | Passos, MG</span>
                     <ul class="job-desc">
-                        <li>Desenvolvimento de bot RPA (**Python/Selenium**) para lançamentos no CREA-MG (**+400% produtividade**).</li>
+                        <li>Desenvolvimento, deploy e manutenção de bot RPA (**Python/Selenium**) para lançamentos automáticos no CREA-MG, elevando a produtividade em **+400%**.</li>
                         <li>Padronização da solução em 7 filiais, eliminando erros manuais.</li>
                     </ul>
                 </div>
@@ -763,7 +763,7 @@
         };
 
         // 2. Destaque Secundário (CREA BOT - Descrição Turbo baseada no README)
-        // ADICIONADO: manual_url para apontar para o arquivo novo
+        // O CREA Bot não precisa mais ser um "featured" de código, ele é o "Automation Highlight" agora.
         const creaBotProject = {
             name: "crea-rpa-bot",
             description: "Automação RPA (Python + Selenium) do portal CREA-MG. Interface moderna (CustomTkinter), validação inteligente e +400% de produtividade em 7 filiais.",
@@ -783,7 +783,7 @@
         async function loadProjects() {
             const container = document.getElementById('github-projects');
             // Inicia a lista já com os dois projetos principais "travados" no topo
-            let finalProjects = [featuredProject, creaBotProject];
+            let finalProjects = [featuredProject, creaBotProject]; // Mantido para que o creaBot apareça na grade se o GitHub falhar.
 
             try {
                 // A API do GitHub tem limite de requests, então o fallback é importante.
@@ -804,12 +804,14 @@
                 // Fallback se houver erro de rede
                 finalProjects = finalProjects.concat(manualProjects); 
             }
-            renderProjects(finalProjects, container);
+            // Remove o CreaBot da lista para a renderização, pois ele já tem um destaque próprio no topo
+            const projectsToRender = finalProjects.filter(p => p.name !== creaBotProject.name);
+            renderProjects(projectsToRender, container);
         }
 
         function renderProjects(projects, container) {
             container.innerHTML = projects.map(p => {
-                // Se for featuredProject, usa o ícone de troféu dourado (.featured-icon)
+                // Se for featuredProject (Damas), usa o ícone de troféu dourado (.featured-icon)
                 const iconClass = p.isFeatured ? "fas fa-trophy featured-icon" : "far fa-folder-open";
                 const bgStyle = p.isFeatured ? "background: linear-gradient(to bottom right, var(--bg-card), rgba(245, 158, 11, 0.05)); border-color: #f59e0b;" : "";
                 const safeLink = p.html_url || fallbackUrl;
@@ -818,7 +820,7 @@
 
                 // LÓGICA NOVA: Botão do Manual (se existir)
                 const manualBtn = p.manual_url 
-                    ? `<a href="${safeLink}" target="_blank" class="project-link-icon" title="Ver Manual" style="margin-left: 0.5rem;"><i class="fas fa-book"></i></a>`
+                    ? `<a href="${p.manual_url}" target="_blank" class="project-link-icon" title="Ver Manual" style="margin-left: 0.5rem;"><i class="fas fa-book"></i></a>`
                     : '';
 
                 return `
@@ -854,80 +856,32 @@
         loadProjects();
 
         // ==============================================
-        //  LÓGICA DE TEMA (COM PERSISTÊNCIA E ACESSIBILIDADE)
+        //  LÓGICA SIMPLIFICADA E FLUIDA DE TROCA DE TEMA
         // ==============================================
         const themeToggle = document.getElementById('theme-toggle');
-        const THEME_KEY = 'pz-theme';
 
-        /**
-         * Aplica o tema (claro ou escuro), atualiza o DOM, o aria-pressed e salva no localStorage.
-         * @param {string} theme - 'light' ou 'dark'
-         */
-        function applyTheme(theme) {
-            const isLight = theme === 'light';
-            
-            if (isLight) {
+        function updateTheme() {
+             // 1. Verifica o estado atual
+            const isCurrentlyLight = document.body.hasAttribute('data-theme');
+
+            if (isCurrentlyLight) {
+                // Se está claro, muda para escuro (remove o atributo)
+                document.body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                // Se está escuro, muda para claro (adiciona o atributo)
                 document.body.setAttribute('data-theme', 'light');
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            } else {
-                document.body.removeAttribute('data-theme'); // Volta para o Dark (padrão via :root)
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            }
-            
-            // Atualiza o estado de acessibilidade
-            themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-            
-            // Salva a preferência
-            localStorage.setItem(THEME_KEY, theme);
-        }
-
-        /**
-         * Inicializa o tema ao carregar a página, priorizando o localStorage.
-         */
-        function initTheme() {
-            const savedTheme = localStorage.getItem(THEME_KEY);
-            
-            if (savedTheme) {
-                // Se tem tema salvo, aplica ele imediatamente.
-                const isLight = savedTheme === 'light';
-                 if (isLight) {
-                    document.body.setAttribute('data-theme', 'light');
-                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                 } else {
-                    document.body.removeAttribute('data-theme');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                 }
-                themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-            } else {
-                // Se não tem salvo, assume 'dark' (padrão do CSS) e salva para a próxima vez.
-                localStorage.setItem(THEME_KEY, 'dark');
-                themeToggle.setAttribute('aria-pressed', 'false');
             }
         }
-        
-        // Listener de clique para alternar
-        themeToggle.addEventListener('click', () => {
-            const isLight = document.body.hasAttribute('data-theme');
-            const nextTheme = isLight ? 'dark' : 'light';
-            applyTheme(nextTheme);
-        });
 
-        // Chama a função de inicialização
-        initTheme();
-
-        // ==============================================
-        //  LÓGICA DE VÍDEO (Acessibilidade - Keydown)
-        // ==============================================
-        const videoButton = document.getElementById('video-cover-btn');
-        if (videoButton) {
-            videoButton.addEventListener('keydown', (event) => {
-                // Se a tecla for Enter ou Espaço, simula o clique
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault(); // Evita o scroll padrão do Espaço
-                    playVideo(videoButton);
-                }
-            });
+        // Inicializa o ícone baseado no estado (em caso de preferência do sistema)
+        if (document.body.hasAttribute('data-theme')) {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
+
+        // 2. Adiciona o listener simples. O CSS faz a transição!
+        themeToggle.addEventListener('click', updateTheme);
 
     </script>
 </body>
