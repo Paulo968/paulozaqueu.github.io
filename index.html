@@ -10,10 +10,14 @@
     <meta property="og:title" content="Portfólio - Paulo Zaqueu">
     <meta property="og:description" content="Dev focado em automação e otimização logística.">
     <meta property="og:type" content="website">
+    <!-- NOVO: SEO Melhorado -->
+    <meta property="og:url" content="https://paulozaqueu.dev/">
+    <meta property="og:image" content="https://paulozaqueu.dev/assets/paulo-zaqueu-thumb.jpg">
+    <link rel="canonical" href="https://paulozaqueu.dev/">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -50,23 +54,15 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
+
+        /* Adicionado: Transição de cor suave para o BODY */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
             padding-top: 80px;
-        }
-
-        /* Canvas de Transição */
-        #transition-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
+            transition: background-color 0.8s ease, color 0.8s ease; /* Transição de tema */
         }
 
         /* Navbar */
@@ -76,6 +72,8 @@
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border); z-index: 1000;
             display: flex; align-items: center; justify-content: center;
+            /* Adicionado: Transição para borda e fundo da nav */
+            transition: border-bottom-color 0.8s ease, background-color 0.8s ease;
         }
         .nav-container {
             width: 100%; max-width: 1100px; padding: 0 1.5rem;
@@ -84,6 +82,7 @@
         .nav-logo {
             font-weight: 800; font-size: 1.2rem; color: var(--text-main);
             text-decoration: none; letter-spacing: -1px; position: relative;
+            transition: color 0.8s ease; /* Transição da cor do logo */
         }
         .nav-logo::after {
             content: "";
@@ -102,36 +101,40 @@
             border: 1px solid var(--border); background: transparent;
             color: var(--text-main); display: flex; align-items: center; justify-content: center;
             cursor: pointer; text-decoration: none; font-size: 1.1rem;
-            transition: all 0.2s;
+            transition: all 0.2s, color 0.8s ease, border-color 0.8s ease; /* Transição de tema */
         }
         .btn-icon:hover { background: var(--bg-card); border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-        
-        /* Estilos Customizados para Redes Sociais no Navbar */
         .btn-linkedin { color: var(--text-main); border-color: var(--border); }
         .btn-linkedin:hover { color: #fff !important; background: var(--linkedin) !important; border-color: var(--linkedin) !important; }
-        
-        /* NOVO: Estilo para WhatsApp */
-        .btn-whatsapp { color: var(--text-main); border-color: var(--border); }
-        .btn-whatsapp:hover { color: #fff !important; background: #25D366 !important; border-color: #25D366 !important; }
 
         .btn-print {
             background: var(--accent); color: white; border: none;
             font-weight: 600; font-size: 0.9rem; padding: 0 1rem; width: auto; gap: 0.5rem;
         }
         .btn-print:hover { opacity: 0.9; background: var(--accent); color: white; }
-        
+
         .hide-mobile { display: none; }
         @media (min-width: 600px) { .hide-mobile { display: inline; } }
 
+        /* NOVO: Foco para Acessibilidade */
+        .btn-icon:focus-visible,
+        .featured-video[tabindex="0"]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-color: var(--accent);
+        }
+
         /* Layout */
         .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-        
+
         /* Hero */
         .hero { margin-bottom: 3rem; animation: fadeIn 0.8s ease-out; }
         .hero h1 {
             font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
             background: linear-gradient(90deg, var(--text-main), var(--text-muted));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            /* Adicionado: Transição para o texto (que usa --text-main/muted) */
+            transition: background 0.8s ease;
         }
         .hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 700px; margin-bottom: 1.5rem; }
         .hero-sub {
@@ -145,15 +148,19 @@
         .tag {
             font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent);
             background: var(--bg-card); padding: 0.35rem 0.75rem; border-radius: 50px; border: 1px solid var(--border);
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease, color 0.8s ease;
         }
 
-        /* Tech Stack */
+        /* Tech Stack & Como posso te ajudar */
         .stack-section { margin-bottom: 3rem; }
         .stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
         @media (min-width: 768px) { .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         .stack-item {
             background: var(--bg-card); border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border);
             display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; transition: all 0.2s;
+            /* Adicionado: Transição de tema */
+            transition: all 0.2s, background-color 0.8s ease, border-color 0.8s ease;
         }
         .stack-item:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 0 0 1px var(--accent-glow); }
         .stack-title { font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
@@ -167,6 +174,8 @@
             background: radial-gradient(circle at top left, rgba(47,129,247,0.18), transparent 55%), var(--bg-card);
             border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); padding: 1.5rem 1.6rem;
             position: relative; overflow: hidden;
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease;
         }
         .featured-badge {
             font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #fbbf24;
@@ -180,6 +189,7 @@
         .chip {
             border-radius: 999px; border: 1px solid var(--border); padding: 0.25rem 0.6rem;
             font-size: 0.75rem; color: var(--text-muted); background: var(--bg-card-hover);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
         }
         .featured-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
         .btn-cta {
@@ -207,7 +217,7 @@
             group: video-group;
         }
         .featured-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
-        
+
         .video-cover {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             /* Capa do YouTube do seu vídeo - Usando hqdefault para garantir que apareça */
@@ -224,7 +234,7 @@
         }
         .featured-video:hover .video-cover { transform: scale(1.05); }
         .featured-video:hover .video-cover::after { background: rgba(0,0,0,0.1); }
-        
+
         .play-btn {
             width: 70px; height: 70px; 
             background: rgba(47, 129, 247, 0.85);
@@ -237,7 +247,7 @@
             box-shadow: 0 0 20px rgba(47, 129, 247, 0.4);
             transition: all 0.3s ease;
         }
-        
+
         .featured-video:hover .play-btn {
             transform: scale(1.1);
             background: rgba(47, 129, 247, 1);
@@ -259,11 +269,31 @@
         @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .stat-card {
             background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem;
-            border-radius: 12px; text-align: center; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            border-radius: 12px; text-align: center; 
+            /* Adicionado: Transição de tema */
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.8s ease, background-color 0.8s ease;
         }
         .stat-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(15, 23, 42, 0.6); }
         .stat-val { display: block; font-size: 2rem; font-weight: 800; color: var(--success); margin-bottom: 0.2rem; }
         .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+        /* NOVO: Estilo de Troféu/Ouro para o Prêmio (4º card) */
+        .stat-card:nth-child(4) {
+            background: radial-gradient(circle at top left, rgba(253, 230, 138, 0.25), transparent 70%), var(--bg-card);
+            border-color: #FFD700; /* Ouro Puro */
+            box-shadow: 0 0 20px rgba(253, 230, 138, 0.3);
+            transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease, transform 0.2s;
+        }
+        .stat-card:nth-child(4) .stat-val {
+            color: #FFD700; /* Cor do texto do valor em ouro */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+        .stat-card:nth-child(4):hover {
+            transform: scale(1.05); /* Mais destaque no hover */
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+        /* FIM DO NOVO ESTILO DE OURO */
+
 
         /* Sections */
         h2 { font-size: 1.4rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; color: var(--text-main); }
@@ -275,22 +305,36 @@
         .project-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
             display: flex; flex-direction: column; justify-content: space-between; height: 100%; transition: all 0.2s; position: relative; z-index: 1;
+            /* Adicionado: Transição de tema */
+            transition: all 0.2s, background-color 0.8s ease, border-color 0.8s ease;
         }
         .project-card:hover { transform: translateY(-5px); border-color: var(--accent); background: var(--bg-card-hover); z-index: 2; }
         .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
         .project-header i { font-size: 1.5rem; color: var(--accent); }
-        .project-header i.featured-icon { color: #f59e0b; }
+
+        /* NOVO: Ícone de Troféu Dourado para Projetos Destacados */
+        .project-header i.featured-icon { 
+            color: #FFD700; /* Ouro Puro */
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.7); /* Brilho */
+        }
+        /* FIM DO NOVO ESTILO DE OURO */
+
         .project-link-icon { color: var(--text-muted); font-size: 1.2rem; padding: 8px; transition: color 0.2s; cursor: pointer; display: inline-block; text-decoration: none; }
         .project-link-icon:hover { color: var(--accent); }
         .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
         .project-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; flex-grow: 1; }
         .project-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; display: flex; gap: 0.5rem; align-items: center; }
 
-        .timeline { border-left: 2px solid var(--timeline-line); padding-left: 2rem; margin-left: 0.5rem; position: relative; }
+        .timeline { border-left: 2px solid var(--timeline-line); padding-left: 2rem; margin-left: 0.5rem; position: relative;
+            /* Adicionado: Transição de tema para a linha do tempo */
+            transition: border-left-color 0.8s ease;
+        }
         .timeline-item { position: relative; margin-bottom: 3rem; }
         .timeline-item::before {
             content: ''; position: absolute; left: -2.4rem; top: 0.4rem; width: 12px; height: 12px;
             background: var(--accent); border: 3px solid var(--bg-body); border-radius: 50%; z-index: 2;
+            /* Adicionado: Transição de tema para a borda do ponto */
+            transition: border-color 0.8s ease;
         }
         .job-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
         .job-company { color: var(--accent); font-weight: 600; font-size: 1rem; }
@@ -307,96 +351,69 @@
         }
         .promotion-title { font-size: 1.05rem; font-weight: 600; color: var(--text-main); }
 
-        .education-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; }
-        footer { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; }
-        .footer-icons { margin-bottom: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
-        .footer-icons a { color: var(--text-muted); font-size: 1.5rem; transition: all 0.2s; text-decoration: none; }
-        .footer-icons a:hover { color: var(--accent); transform: scale(1.1); }
+        .education-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; 
+            /* Adicionado: Transição de tema */
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+
+        footer { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem; 
+            /* Adicionado: Transição de tema para borda e cor do texto */
+            transition: border-top-color 0.8s ease, color 0.8s ease;
+        }
+
+        /* Classes de animação existentes... */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         @media print {
             body { background: white; color: black; padding-top: 0; }
-            /* OTIMIZAÇÃO CURRÍCULO RAIZ */
-            .navbar, .btn-icon, .no-print, .footer-icons, .featured-video-wrapper { 
-                display: none !important; 
-            }
-            .stats-grid { /* Garante que os stats importantes apareçam */
-                grid-template-columns: repeat(2, 1fr) !important; 
-            }
-            .featured-video-wrapper,
-            .stats-grid,
-            .footer-icons,
-            .tags-container {
-                display: none !important;
-            }
-            /* FONTES E LAYOUT */
-            .container { max-width: 100%; padding: 0.5rem 0.5rem; }
-            h1 { color: black; -webkit-text-fill-color: black; margin-top: 1rem; font-size: 2rem; }
-            h2 { font-size: 1.2rem; margin-bottom: 0.8rem; }
-            .job-desc li { font-size: 0.9rem; }
-            .job-title { font-size: 1rem; }
-            .stat-val { font-size: 1.5rem; }
-            .stat-label { font-size: 0.8rem; }
-
-            /* Evita quebra de página dentro de cartões */
-            .stat-card, .project-card, .education-card, .timeline-item { 
-                border: 1px solid #ccc; 
-                padding: 1rem;
-                margin-bottom: 1rem;
-                break-inside: avoid; 
-            }
+            .navbar, .btn-icon, .no-print, .footer-icons { display: none !important; }
+            .container { max-width: 100%; padding: 0; }
+            .stat-card, .project-card, .education-card { border: 1px solid #ccc; break-inside: avoid; }
+            h1 { color: black; -webkit-text-fill-color: black; }
             .promotion-track { border-left: 2px solid #ccc; }
-            
-            /* CRÍTICO: Esconde o Canvas e o vídeo na impressão */
-            #transition-canvas { display: none !important; }
+
+            /* Regras de impressão de vídeo */
+            .featured-video-wrapper { break-inside: avoid; }
             .featured-video iframe { display: none; } 
             .featured-video::after { content: "Vídeo disponível na versão online."; display: block; padding: 2rem; text-align: center; border: 1px dashed #ccc; }
         }
     </style>
 </head>
 <body>
-    
-    <!-- Canvas Overlay para o Efeito Digital Grid -->
-    <canvas id="transition-canvas"></canvas>
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">PZ.</a>
+            <a href="#" class="nav-logo" aria-label="Voltar ao topo">PZ.</a>
             <div class="nav-actions">
-                <!-- Botão Tema (será o epicentro do efeito) -->
-                <button class="btn-icon" id="theme-toggle" title="Mudar Tema">
+                <!-- Botão Tema (AGORA COM ACESSIBILIDADE) -->
+                <button 
+                    class="btn-icon" 
+                    id="theme-toggle" 
+                    title="Mudar Tema"
+                    aria-label="Mudar tema claro/escuro"
+                    aria-pressed="false"
+                >
                     <i class="fas fa-sun"></i>
                 </button>
-                
-                <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                
-                <!-- AGORA COMO ÍCONE NO NAVBAR -->
-                <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
-                
-                <!-- AGORA COMO ÍCONE NO NAVBAR, COM HOVER VERDE CUSTOMIZADO -->
-                <a href="https://wa.me/5535999861468" target="_blank" rel="noopener noreferrer" class="btn-icon btn-whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
+                <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer" class="btn-icon btn-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                
-                <!-- REMOVIDO: Botão de impressão PDF -->
-                <!-- <button class="btn-icon btn-print" onclick="window.print()">
+                <button class="btn-icon btn-print" onclick="window.print()">
                     <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
-                </button> -->
+                </button>
             </div>
         </div>
     </nav>
 
     <main class="container">
-        
+
         <!-- Hero -->
         <section class="hero reveal">
             <p style="color: var(--accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 0.5rem;">OLÁ, EU SOU</p>
             <h1>Paulo Zaqueu de Oliveira Jr.</h1>
-            <!-- NOVO: Apenas Localização (os contatos foram para o Navbar) -->
-            <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                Passos, MG · Brasil
-            </p>
-            <!-- REMOVIDO: Linha de Email e WhatsApp em texto -->
-            <!-- FIM NOVO -->
             <p class="hero-sub">
                 Dev & Automação Logística · Python · RPA · SAP SD/MM/WM · Firebase · IA aplicada em jogos.
             </p>
@@ -404,7 +421,7 @@
                 <strong style="color: var(--text-main);">Dev & Automação Logística</strong> com foco em tirar peso operacional da equipe
                 criando automações inteligentes – de bots para o CREA a um jogo de damas com IA e multiplayer online.
             </p>
-            
+
             <div class="tags-container">
                 <span class="tag">SAP SD/MM/WM</span>
                 <span class="tag">Python (Pandas/Selenium)</span>
@@ -412,6 +429,25 @@
                 <span class="tag">JavaScript / Firebase</span>
                 <span class="tag">Supply Chain</span>
                 <span class="tag">5S & Kaizen</span>
+            </div>
+        </section>
+
+        <!-- NOVO: Como Posso Te Ajudar (Ideia de Evolução) -->
+        <section class="stack-section reveal">
+            <h2><i class="fas fa-handshake"></i> Como posso te ajudar?</h2>
+            <div class="stack-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-flask"></i> Automatizar & Inovar</div>
+                    <div class="stack-detail">Automatizo rotinas chatas (fiscal, SAP, planilhas) com Python/RPA para focar no que realmente importa.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-truck-loading"></i> Otimizar Logística</div>
+                    <div class="stack-detail">Otimizo operações de estoque (FEFO/5S/SAP WM) e Supply Chain, reduzindo perdas e aumentando a acuracidade.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-title"><i class="fas fa-desktop"></i> Criar Soluções Web</div>
+                    <div class="stack-detail">Desenvolvo soluções web simples e funcionais (jogos com IA, dashboards, ferramentas customizadas).</div>
+                </div>
             </div>
         </section>
 
@@ -483,20 +519,27 @@
                         <i class="fas fa-video"></i>
                         <span>Dica: clique na imagem para ver a demo.</span>
                     </div>
-                    
-                    <!-- Container com CAPA + VÍDEO (ADICIONADO ROLE e ARIA-LABEL) -->
-                    <div class="featured-video" onclick="playVideo(this)" role="button" aria-label="Assistir demo do jogo de damas com IA">
+
+                    <!-- Container com CAPA + VÍDEO (AGORA COM ACESSIBILIDADE PARA TECLADO) -->
+                    <div 
+                        class="featured-video" 
+                        id="video-cover-btn" 
+                        role="button" 
+                        tabindex="0" 
+                        onclick="playVideo(this)"
+                        aria-label="Clique para assistir a demonstração do Jogo de Damas com IA"
+                    >
                         <!-- Capa com Imagem e Botão Play -->
                         <div class="video-cover">
                             <div class="play-btn">
                                 <i class="fas fa-play"></i>
                             </div>
                         </div>
-                        
+
                         <!-- Iframe (inicialmente escondido ou carregado sob demanda) -->
                         <div id="video-placeholder"></div>
                     </div>
-                    
+
                     <!-- Botão de Fallback (Segurança) -->
                     <a href="https://www.youtube.com/watch?v=pk9YAf2hNTM" target="_blank" class="video-fallback-link">
                         <i class="fab fa-youtube"></i> Se o vídeo não carregar, clique aqui para assistir no YouTube
@@ -519,6 +562,7 @@
                 <span class="stat-val">99.8%</span>
                 <span class="stat-label">Acuracidade Estoque</span>
             </div>
+            <!-- ESTE É O STAT CARD COM O TROFÉU DE OURO -->
             <div class="stat-card">
                 <span class="stat-val">#1</span>
                 <span class="stat-label">Prêmio Global Coty</span>
@@ -529,6 +573,7 @@
         <section class="reveal">
             <h2 id="projects"><i class="fas fa-code-branch"></i> Projetos & Automação</h2>
             <div class="projects-grid" id="github-projects">
+                <!-- A mensagem "Carregando portfólio..." é mantida no JS -->
                 <p style="color: var(--text-muted);">Carregando portfólio...</p>
             </div>
         </section>
@@ -537,78 +582,98 @@
         <section class="reveal">
             <h2 id="experience"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
             <div class="timeline">
+
+                <!-- 1. AP AGRÍCOLA -->
                 <div class="timeline-item">
                     <div class="job-title">Faturista & Desenvolvedor de Automação</div>
                     <div class="job-company">AP Agrícola</div>
                     <span class="job-date">Nov 2023 - Atual | Passos, MG</span>
                     <ul class="job-desc">
-                        <li>Desenvolvimento de bot RPA (Python/Selenium) para lançamentos no CREA-MG (+400% produtividade).</li>
+                        <li>Desenvolvimento de bot RPA (**Python/Selenium**) para lançamentos no CREA-MG (**+400% produtividade**).</li>
                         <li>Padronização da solução em 7 filiais, eliminando erros manuais.</li>
                     </ul>
                 </div>
+
+                <!-- 2. COOPERCITRUS -->
                 <div class="timeline-item">
                     <div class="job-title">Líder de Depósito</div>
                     <div class="job-company">Coopercitrus</div>
                     <span class="job-date">Mar 2023 - Nov 2023 | Passos, MG</span>
                     <ul class="job-desc">
-                        <li>Liderança de equipe (6 colaboradores) e operação logística SAP MM/WM.</li>
-                        <li>Implementação de FEFO e 5S (Redução de 30% em perdas).</li>
+                        <li>Liderança de equipe (6 colaboradores) e operação logística **SAP MM/WM**.</li>
+                        <li>Implementação de **FEFO e 5S** (Redução de 30% em perdas).</li>
                     </ul>
                 </div>
-                
-                <!-- NOVO CARGO: Analista de Controle de Qualidade -->
+
+                <!-- 3. MINASBEB DISTRIBUIDORA - REINSERIDO AQUI -->
                 <div class="timeline-item">
-                    <div class="job-title">Analista de Controle de Qualidade</div>
+                    <div class="job-title">Analista de Controle de Qualidade Logística</div>
                     <div class="job-company">Minasbeb Distribuidora</div>
                     <span class="job-date">Jul 2022 - Dez 2022 | Passos, MG</span>
                     <ul class="job-desc">
-                        <li>Análise e controle de produtos e materiais em armazém, garantindo integridade e acuracidade do estoque.</li>
-                        <li>Otimização de armazenamento e supervisão do recebimento, assegurando correta verificação e registro de produtos.</li>
-                        <li>Criação de controles auxiliares para inventários e monitoramento de ativos de giro (KPIs).</li>
-                        <li>Contribuição ativa para programas de excelência operacional e metodologia 5S.</li>
+                        <li>Condução de análises de estoque e implementação de estratégias de armazenagem (+20% de espaço).</li>
+                        <li>Elevei a acuracidade de estoque para **99,8%**.</li>
+                        <li>Apoio em recebimento, inventário físico e aplicação de **5S**.</li>
                     </ul>
                 </div>
-                
+
+                <!-- 4. COTY BRASIL (TRAJETÓRIA COMPLETA) -->
                 <div class="timeline-item">
                     <div class="job-title">Coty Brasil (Trajetória de Crescimento)</div>
-                    <div class="job-company">Coty Brasil</div>
-                    <span class="job-date">Dez 2016 - Jul 2022 | Goiânia, GO</span>
-                    <!-- Resumo de impacto na Coty -->
-                    <p class="job-desc" style="margin-bottom: 1rem; color: var(--text-main); font-weight: 500;">
-                        Durante 6 anos, tive uma trajetória de crescimento acelerado. Iniciei na base e fui promovido a Líder de Expedição, culminando no <strong style="color: var(--success);">Prêmio Global Coty de Eficiência de Custos</strong>, reconhecimento direto das minhas otimizações em processos SAP e gestão de estoque.
-                    </p>
+                    <div class="job-company">Coty Brasil | Goiânia, GO</div>
+                    <span class="job-date">Dez 2016 - Jul 2022</span>
                     <div class="promotion-track">
-                        <!-- CARGO: Auxiliar de Expedição (Dez 2016 - Dez 2018) -->
-                        <div class="promotion-item">
-                            <div class="promotion-title">Auxiliar de Expedição</div>
-                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2016 - Dez 2018</span>
-                        </div>
-                        
-                        <!-- CARGO AJUSTADO: Conferente/Op. Empilhadeira (Dez 2018 - Dez 2020) -->
-                        <div class="promotion-item">
-                            <div class="promotion-title">Conferente / Op. Empilhadeira</div>
-                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2018 - Dez 2020</span>
-                        </div>
-                        
-                        <!-- CARGO EXISTENTE: Assistente de Logística (Dez 2020 - Mar 2022) -->
-                        <div class="promotion-item">
-                            <div class="promotion-title">Assistente de Logística</div>
-                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2020 - Mar 2022</span>
-                        </div>
-                        
-                        <!-- CARGO EXISTENTE: Líder de Expedição (Abr 2022 - Jul 2022) -->
+
+                        <!-- LÍDER DE EXPEDIÇÃO -->
                         <div class="promotion-item">
                             <div class="promotion-title">Líder de Expedição</div>
                             <span class="job-date" style="margin-bottom: 0.3rem;">Abr 2022 - Jul 2022</span>
+                            <ul class="job-desc">
+                                <li>Supervisionei equipe em processos de expedição, armazenagem e recebimento.</li>
+                                <li>Utilizei **SAP WM** em operações de Picking, Aéreo, Drive e Flowrec.</li>
+                            </ul>
+                        </div>
+
+                        <!-- ASSISTENTE DE LOGÍSTICA (AUTOMAÇÃO E PRÊMIO) -->
+                        <div class="promotion-item">
+                            <div class="promotion-title">Assistente de Logística</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2020 - Mar 2022</span>
+                            <ul class="job-desc">
+                                <li>Desenvolvi e implementei **automação de reabastecimento (VBA + Power Query)**, com integração em tempo real ao **SAP WM**, otimizando o controle de estoque e falhas.</li>
+                                <li>Atuação em cadastramento de materiais, picking e inventário rotativo no SAP WM.</li>
+                                <li>Gerenciei DTs de separação e suporte operacional. **Conquista:** Prêmio 1º Lugar Global em Eficiência de Custos.</li>
+                            </ul>
+                        </div>
+
+                        <!-- CONFERENTE / OPERADOR DE EMPILHADEIRA -->
+                        <div class="promotion-item">
+                            <div class="promotion-title">Conferente / Operador de Empilhadeira</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Jan 2019 - Nov 2020</span>
+                            <ul class="job-desc">
+                                <li>Descarregava pallets (operação de empilhadeira) e realizava conferência de materiais via coletor de dados.</li>
+                                <li>Garantia conformidade com notas fiscais e acuracidade de estoque.</li>
+                                <li>Apoiei assistentes de logística no SAP WM em movimentações e reabastecimentos.</li>
+                            </ul>
+                        </div>
+
+                        <!-- AUXILIAR DE EXPEDIÇÃO -->
+                         <div class="promotion-item">
+                            <div class="promotion-title">Auxiliar de Expedição</div>
+                            <span class="job-date" style="margin-bottom: 0.3rem;">Dez 2016 - Dez 2018</span>
+                            <ul class="job-desc">
+                                <li>Separação e conferência de produtos acabados com coletor de dados.</li>
+                                <li>Organização de áreas de picking e docas com **5S**.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <!-- FIM DA EXPERIÊNCIA -->
             </div>
         </section>
 
         <!-- Education -->
         <section class="reveal">
-            <h2 id="education"><i class="fas fa-graduation-cap"></i> Formação</h2>
+            <h2><i class="fas fa-graduation-cap"></i> Formação</h2>
             <div class="education-card">
                 <div class="job-title">Tecnólogo em Logística</div>
                 <div class="job-company">UniFatecie</div>
@@ -641,7 +706,7 @@
         function playVideo(container) {
             const placeholder = container.querySelector('#video-placeholder');
             const cover = container.querySelector('.video-cover');
-            
+
             // Tenta carregar o vídeo
             placeholder.innerHTML = `
                 <iframe 
@@ -654,7 +719,7 @@
                     allowfullscreen>
                 </iframe>
             `;
-            
+
             // Fade out da capa
             cover.style.opacity = '0';
             setTimeout(() => {
@@ -665,7 +730,7 @@
         // === GITHUB PROJECTS ===
         const githubUser = 'Paulo968';
         const fallbackUrl = "https://github.com/Paulo968";
-        
+
         // 1. Destaque Principal (Damas)
         const featuredProject = {
             name: "damas-ia-graomestre",
@@ -675,27 +740,18 @@
             isFeatured: true
         };
 
-        // 2. Destaque Secundário (CREA BOT)
+        // 2. Destaque Secundário (CREA BOT - Descrição Turbo baseada no README)
+        // ADICIONADO: manual_url para apontar para o arquivo novo
         const creaBotProject = {
             name: "crea-rpa-bot",
-            description: "RPA em Python/Selenium para o portal CREA-MG. Padronização em 7 filiais, +400% de produtividade, interface (CustomTkinter) e retomada inteligente.",
+            description: "Automação RPA (Python + Selenium) do portal CREA-MG. Interface moderna (CustomTkinter), validação inteligente e +400% de produtividade em 7 filiais.",
             language: "Python",
             html_url: "https://github.com/Paulo968/crea-rpa-bot",
-            manual_url: "https://manual-crea-bot.netlify.app/", // NOVO LINK DO MANUAL AQUI
-            isFeatured: true
-        };
-        
-        // 3. NOVO PROJETO: JokenpoPro
-        const jokenpoProject = {
-            name: "JokenpoPro",
-            description: "Clássico jogo JoKenPo (Pedra, Papel, Tesoura) com interface moderna e responsiva em JavaScript.",
-            language: "JavaScript",
-            html_url: "https://paulo968.github.io/JokenpoPro/", // Link do jogo
-            repo_url: "https://github.com/Paulo968/JokenpoPro", // Link do repositório
+            manual_url: "manual.html",
             isFeatured: false
         };
 
-        // 4. Projetos Manuais (Fallback)
+        // 3. Projetos Manuais (Fallback)
         const manualProjects = [
             // O crea-bot já está definido acima, então não precisamos repetir aqui se a lógica de carga estiver certa
             { name: "sap-reabastecimento-tool", description: "Ferramenta VBA + SAP WM para reposição de estoque.", language: "VBA", html_url: fallbackUrl },
@@ -704,19 +760,18 @@
 
         async function loadProjects() {
             const container = document.getElementById('github-projects');
-            // Prioriza os destaques manuais no topo da lista
-            let finalProjects = [featuredProject, creaBotProject, jokenpoProject];
+            // Inicia a lista já com os dois projetos principais "travados" no topo
+            let finalProjects = [featuredProject, creaBotProject];
 
             try {
-                // Tenta carregar outros projetos do GitHub
+                // A API do GitHub tem limite de requests, então o fallback é importante.
                 const res = await fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=5`);
                 if (res.ok) {
                     const githubData = await res.json();
-                    // Filtra para não duplicar os projetos já adicionados manualmente (Damas, CREA e Jokenpo)
+                    // Filtra para não duplicar o Damas nem o CREA Bot (pois já adicionamos manualmente com descrições melhores)
                     const filtered = githubData.filter(r => 
                         !r.name.toLowerCase().includes('damas') && 
-                        !r.name.toLowerCase().includes('crea') &&
-                        !r.name.toLowerCase().includes('jokenpo')
+                        !r.name.toLowerCase().includes('crea')
                     );
                     finalProjects = finalProjects.concat(filtered);
                 } else { 
@@ -732,25 +787,17 @@
 
         function renderProjects(projects, container) {
             container.innerHTML = projects.map(p => {
+                // Se for featuredProject, usa o ícone de troféu dourado (.featured-icon)
                 const iconClass = p.isFeatured ? "fas fa-trophy featured-icon" : "far fa-folder-open";
                 const bgStyle = p.isFeatured ? "background: linear-gradient(to bottom right, var(--bg-card), rgba(245, 158, 11, 0.05)); border-color: #f59e0b;" : "";
                 const safeLink = p.html_url || fallbackUrl;
                 // Formatação simples do nome do repositório (ex: damas-ia-graomestre -> Damas Ia Graomestre)
                 const name = (p.name || "").replace(/-/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase());
-                
+
                 // LÓGICA NOVA: Botão do Manual (se existir)
                 const manualBtn = p.manual_url 
-                    ? `<a href="${p.manual_url}" target="_blank" class="project-link-icon" title="Ver Manual" style="margin-left: 0.5rem;"><i class="fas fa-book"></i></a>`
+                    ? `<a href="${safeLink}" target="_blank" class="project-link-icon" title="Ver Manual" style="margin-left: 0.5rem;"><i class="fas fa-book"></i></a>`
                     : '';
-                
-                // LÓGICA NOVA: Botão do Repositório (discreto)
-                const repoBtn = p.repo_url 
-                    ? `<a href="${p.repo_url}" target="_blank" class="project-link-icon" title="Repositório GitHub"><i class="fab fa-github"></i></a>`
-                    : '';
-                
-                // Ajusta o link principal para o repositório se for o Jokenpo e não tiver repo_url, mas usamos safeLink para o botão de "play"
-                // Para o Jokenpo, o link principal é o de jogar.
-                const playLink = p.html_url || fallbackUrl;
 
                 return `
                 <div class="project-card" style="${bgStyle}">
@@ -758,8 +805,7 @@
                         <i class="${iconClass}"></i>
                         <div style="display:flex; align-items:center;">
                             ${manualBtn}
-                            ${repoBtn}
-                            <a href="${playLink}" target="_blank" class="project-link-icon" title="${p.repo_url ? 'Ver Projeto' : 'Ver Código'}"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="${safeLink}" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                     <div class="project-title">${name}</div>
@@ -781,146 +827,85 @@
             });
         }, { threshold: 0.15 }); // Começa a animar quando 15% do elemento estiver visível
         revealEls.forEach(el => observer.observe(el));
-        
+
         // Carrega projetos ao iniciar
         loadProjects();
 
         // ==============================================
-        //  ENGINE DE TRANSIÇÃO "DIGITAL GRID SHOCKWAVE"
+        //  LÓGICA DE TEMA (COM PERSISTÊNCIA E ACESSIBILIDADE)
         // ==============================================
-        const themeBtn = document.getElementById('theme-toggle');
-        const canvas = document.getElementById('transition-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        const COLOR_DARK = "#0d1117"; 
-        const COLOR_LIGHT = "#ffffff";
+        const themeToggle = document.getElementById('theme-toggle');
+        const THEME_KEY = 'pz-theme';
 
-        let isDark = true;
-        // Verifica o tema inicial (se o usuário já estiver em light-mode)
-        if (document.body.getAttribute('data-theme') === 'light') {
-            isDark = false;
-            themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-
-
-        let isAnimating = false;
-        
-        // Configuração da Grade
-        let tileSize = 50; // Tamanho do bloco inicial
-        let tiles = [];
-        let animationFrameId;
-
-        class Tile {
-            constructor(x, y, dist) {
-                this.x = x;
-                this.y = y;
-                this.dist = dist; // Distância do clique (para delay)
-                this.size = 0; // Começa invisível
-                this.targetSize = tileSize + 2; // +2 pra cobrir frestas
-                this.delay = dist * 0.8; // Delay baseado na distância (mais longe, mais delay)
-                this.timer = 0;
-            }
+        /**
+         * Aplica o tema (claro ou escuro), atualiza o DOM, o aria-pressed e salva no localStorage.
+         * @param {string} theme - 'light' ou 'dark'
+         */
+        function applyTheme(theme) {
+            const isLight = theme === 'light';
             
-            update() {
-                if (this.timer >= this.delay) {
-                    // Efeito de crescimento rápido (Efeito elástico)
-                    if (this.size < this.targetSize) {
-                        this.size += (this.targetSize - this.size) * 0.2; 
-                    }
-                } else {
-                    this.timer += 15; // Velocidade do tempo (ajustável)
-                }
-            }
-
-            draw(color) {
-                if (this.size > 0.5) {
-                    ctx.fillStyle = color;
-                    // Desenha centralizado no tile
-                    const offset = (tileSize - this.size) / 2;
-                    ctx.fillRect(this.x + offset, this.y + offset, this.size, this.size);
-                }
-            }
-        }
-
-        function setupGrid(clickX, clickY) {
-            tiles = [];
-            // Recalcula tamanho baseado na tela para garantir cobertura
-            tileSize = Math.max(window.innerWidth, window.innerHeight) / 15; 
-            
-            const cols = Math.ceil(window.innerWidth / tileSize);
-            const rows = Math.ceil(window.innerHeight / tileSize);
-
-            for (let c = 0; c < cols; c++) {
-                for (let r = 0; r < rows; r++) {
-                    const x = c * tileSize;
-                    const y = r * tileSize;
-                    // Distância euclidiana do centro do bloco até o clique
-                    const dist = Math.hypot(x + tileSize/2 - clickX, y + tileSize/2 - clickY) / tileSize; // Distância normalizada
-                    tiles.push(new Tile(x, y, dist));
-                }
-            }
-        }
-
-        function animateGrid() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            let allFinished = true;
-            const color = isDark ? COLOR_LIGHT : COLOR_DARK; // Cor oposta ao tema atual (a cor do próximo tema)
-
-            tiles.forEach(tile => {
-                tile.update();
-                tile.draw(color);
-                // Se algum tile ainda não encheu totalmente, continua animando
-                if (Math.abs(tile.size - tile.targetSize) > 0.5) allFinished = false;
-            });
-
-            if (!allFinished) {
-                animationFrameId = requestAnimationFrame(animateGrid);
-            } else {
-                finishTransition();
-            }
-        }
-
-        function finishTransition() {
-            // Troca o tema REAL por baixo do canvas já preenchido
-            if (isDark) {
+            if (isLight) {
                 document.body.setAttribute('data-theme', 'light');
-                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-                isDark = false;
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             } else {
-                document.body.removeAttribute('data-theme'); // Volta para o default (dark)
-                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
-                isDark = true;
+                document.body.removeAttribute('data-theme'); // Volta para o Dark (padrão via :root)
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
-
-            // Limpa o canvas. Como o fundo do body mudou para a mesma cor,
-            // o usuário não percebe a troca, vendo apenas a cor do novo tema.
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            canvas.style.pointerEvents = 'none';
-            isAnimating = false;
+            
+            // Atualiza o estado de acessibilidade
+            themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+            
+            // Salva a preferência
+            localStorage.setItem(THEME_KEY, theme);
         }
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            // Recriar a grade se necessário, mas para o efeito de transição, isso só é crucial antes do `setupGrid`
+        /**
+         * Inicializa o tema ao carregar a página, priorizando o localStorage.
+         */
+        function initTheme() {
+            const savedTheme = localStorage.getItem(THEME_KEY);
+            
+            if (savedTheme) {
+                // Se tem tema salvo, aplica ele imediatamente.
+                const isLight = savedTheme === 'light';
+                 if (isLight) {
+                    document.body.setAttribute('data-theme', 'light');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                 } else {
+                    document.body.removeAttribute('data-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                 }
+                themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+            } else {
+                // Se não tem salvo, assume 'dark' (padrão do CSS) e salva para a próxima vez.
+                localStorage.setItem(THEME_KEY, 'dark');
+                themeToggle.setAttribute('aria-pressed', 'false');
+            }
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        themeBtn.addEventListener('click', (e) => {
-            if (isAnimating) return;
-            isAnimating = true;
-            canvas.style.pointerEvents = 'all';
-
-            // Pega as coordenadas do clique (epicentro da onda)
-            const rect = e.currentTarget.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-
-            setupGrid(centerX, centerY);
-            animateGrid();
+        
+        // Listener de clique para alternar
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.hasAttribute('data-theme');
+            const nextTheme = isLight ? 'dark' : 'light';
+            applyTheme(nextTheme);
         });
+
+        // Chama a função de inicialização
+        initTheme();
+
+        // ==============================================
+        //  LÓGICA DE VÍDEO (Acessibilidade - Keydown)
+        // ==============================================
+        const videoButton = document.getElementById('video-cover-btn');
+        if (videoButton) {
+            videoButton.addEventListener('keydown', (event) => {
+                // Se a tecla for Enter ou Espaço, simula o clique
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault(); // Evita o scroll padrão do Espaço
+                    playVideo(videoButton);
+                }
+            });
+        }
 
     </script>
 </body>
