@@ -189,6 +189,81 @@
         }
         /* FIM NOVO ESTILO */
 
+        /* NOVO: Estilo para o Card de Narrativa/Propósito */
+        .narrative-card {
+            background: var(--bg-card); 
+            border-radius: 12px;
+            border: 1px solid var(--accent); /* Destaque com a cor primária */
+            padding: 1.8rem;
+            margin-bottom: 3.5rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease, border-color 0.8s ease, background-color 0.8s ease;
+            box-shadow: 0 4px 15px rgba(47, 129, 247, 0.15);
+        }
+        .narrative-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--success);
+            transform: translateY(-2px);
+        }
+        .narrative-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .narrative-header i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+        .narrative-card:hover .narrative-header i {
+            color: var(--success);
+        }
+        .narrative-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+        .narrative-summary {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .narrative-toggle-icon {
+            position: absolute;
+            top: 1.8rem;
+            right: 1.8rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        .narrative-card[aria-expanded="true"] .narrative-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .narrative-details {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .narrative-details h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .narrative-details p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+        /* Utility class for JS toggle */
+        .hidden-content {
+            display: none;
+        }
+
         .featured-card {
             background: radial-gradient(circle at top left, rgba(47,129,247,0.18), transparent 55%), var(--bg-card);
             border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); padding: 1.5rem 1.6rem;
@@ -454,7 +529,7 @@
             </div>
         </section>
 
-        <!-- 2. Stats: A Prova de Resultado (MOVIDO PARA CIMA) -->
+        <!-- 2. Stats: A Prova de Resultado (Fica logo abaixo do Hero para impacto) -->
         <section class="stats-grid reveal">
             <div class="stat-card">
                 <span class="stat-val">+400%</span>
@@ -475,21 +550,55 @@
             </div>
         </section>
         
-        <!-- 3. Destaque RPA CREA: O Mecanismo por Trás do +400% (MOVIDO PARA CIMA) -->
+        <!-- NOVO: 3. Narrative Card: O Porquê da Carreira (Hub para as respostas) -->
+        <section class="reveal">
+            <div class="narrative-card" id="narrative-card" role="button" aria-expanded="false" onclick="toggleNarrative(this)">
+                <div class="narrative-header">
+                    <i class="fas fa-bullseye"></i>
+                    <h3 class="narrative-title">Visão de Carreira & Propósito: Do Chão de Fábrica ao Código</h3>
+                </div>
+                <p class="narrative-summary">
+                    **Clique para expandir:** Entenda o porquê da minha transição de Logística Sênior para Desenvolvimento, e a dor que originou meus projetos de alto impacto (Bot CREA e Damas IA).
+                </p>
+                <i class="fas fa-chevron-down narrative-toggle-icon"></i>
+
+                <div class="narrative-details hidden-content" id="narrative-details-content">
+                    <h4>1. Contextualizando a Transição: Por que migrar para Automação?</h4>
+                    <p>
+                        Minha migração de Logística pura para Dev e Automação não foi uma fuga, mas uma **evolução estratégica** impulsionada pela visão de otimização. Trabalhando em Supply Chain e SAP (WM/MM), eu percebi que a maior perda de tempo e estresse vinha de rotinas manuais e repetitivas. Eu não queria apenas **operar** os processos; eu queria **resolver a raiz** desses problemas de forma escalável e permanente.
+                        Minha vivência operacional no armazém é meu diferencial: ela garante que cada solução técnica que eu crio seja focada no KPI, na usabilidade real e na eficiência no *chão de fábrica*.
+                    </p>
+
+                    <h4>2. Aprofundando o "Porquê" dos Projetos: Dor e Solução</h4>
+                    
+                    <h5>Bot CREA RPA (+400% Produtividade)</h5>
+                    <p>
+                        A dor específica era a lentidão e o alto índice de erro nos lançamentos fiscais do CREA-MG, que impactava a operação de **7 filiais**. A produtividade manual era de apenas **33 receitas por hora** por pessoa. O Bot RPA (**Python/Selenium**), mesmo com internet mediana, eleva essa performance para **95 receitas por hora** (e escala ainda mais com internet otimizada), resultando em uma eliminação de quase **20 horas semanais** de trabalho manual e um salto total de **+400% na produtividade** da equipe de faturamento.
+                    </p>
+                    
+                    <h5>Damas IA Grão-Mestre (Algoritmos Avançados)</h5>
+                    <p>
+                        Este projeto foi minha prova de proficiência em algoritmos complexos. Minha motivação era dominar técnicas avançadas como o **Minimax com Poda Alfa-Beta** – a base para qualquer solução técnica robusta em IA. Usar um jogo clássico foi o melhor campo de testes. O desenvolvimento em JavaScript/Firebase prova que eu consigo criar aplicações web completas, escaláveis e em tempo real, indo além do universo RPA.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. Destaque RPA CREA: O Mecanismo por Trás do +400% (Agora o antigo 3º) -->
         <section class="automation-highlight reveal">
             <div class="automation-highlight-header">
                 <i class="fas fa-chart-line"></i>
-                <h3>Automação de Alto Impacto: Bot CREA RPA</h3>
+                <h3>Automação de Alto Impacto: Bot CREA RPA (+400% Gain)</h3>
             </div>
             <p class="automation-highlight-text">
-                Desenvolvi um **Bot RPA** (Python + Selenium) completo para automatizar lançamentos complexos no portal do **CREA-MG**. A solução foi padronizada e implementada em 7 filiais, resultando em uma eliminação quase total de erros manuais e um ganho de produtividade de mais de **400%** para a equipe de faturamento.
+                Desenvolvi um **Bot RPA** (Python + Selenium) para automação fiscal em **7 filiais**. O Bot transformou um processo lento (33 receitas/hora por pessoa) em uma operação de alta velocidade, processando **95 receitas/hora** com internet mediana (e com potencial para crescer). O resultado é a eliminação de erros manuais e um ganho consolidado de produtividade de **+400%** para a equipe de faturamento.
             </p>
             <div class="featured-actions">
                  <a href="https://github.com/Paulo968/crea-rpa-bot" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-primary" style="background: var(--success); color: white;">
                     <i class="fab fa-python"></i> Ver Bot Python (GitHub)
                 </a>
-                <!-- ATUALIZADO: Link direto para o Manual -->
-                <a href="https://manual-crea-bot.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-ghost">
+                <!-- Link direto para o Manual -->
+                <a href="https://manual-crea-rpa-bot.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-ghost">
                     <i class="fas fa-book"></i> Ver Manual de Uso
                 </a>
                 <a href="#projects" class="btn-cta btn-cta-ghost">
@@ -499,7 +608,7 @@
         </section>
 
 
-        <!-- 4. Destaque Dev: Jogo de Damas (MOVIDO PARA CIMA) -->
+        <!-- 5. Destaque Dev: Jogo de Damas (Agora o antigo 4º) -->
         <section class="reveal">
             <div class="featured-wrapper">
                 <div class="featured-card">
@@ -558,7 +667,7 @@
             </div>
         </section>
 
-        <!-- 5. Tech Stack: Suas Ferramentas (MOVIDO PARA BAIXO) -->
+        <!-- 6. Tech Stack: Suas Ferramentas (Antigo 5º) -->
         <section class="stack-section reveal">
             <h2><i class="fas fa-layer-group"></i> Tech Stack & Ferramentas</h2>
             <div class="stack-grid">
@@ -590,7 +699,7 @@
         </section>
 
 
-        <!-- 6. Experience: Linha do Tempo Profissional (MOVIDO PARA CIMA) -->
+        <!-- 7. Experience: Linha do Tempo Profissional (Antigo 6º) -->
         <section class="reveal">
             <h2 id="experience"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
             <div class="timeline">
@@ -685,7 +794,7 @@
         </section>
 
 
-        <!-- 7. Projects: Detalhe dos Repositórios (MOVIDO PARA BAIXO) -->
+        <!-- 8. Projects: Detalhe dos Repositórios (Antigo 7º) -->
         <section class="reveal">
             <h2 id="projects"><i class="fas fa-code-branch"></i> Projetos & Automação</h2>
             <div class="projects-grid" id="github-projects">
@@ -694,7 +803,7 @@
             </div>
         </section>
 
-        <!-- 8. Education: Formação (FICA NA BASE) -->
+        <!-- 9. Education: Formação (Antigo 8º) -->
         <section class="reveal">
             <h2><i class="fas fa-graduation-cap"></i> Formação</h2>
             <div class="education-card">
@@ -717,7 +826,7 @@
     <footer>
         <div class="footer-icons">
             <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:paulozaqueu3@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:paulozaqueu3@gmail.com" class="footer-icon-link"><i class="fas fa-envelope"></i></a>
             <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
         </div>
         <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">paulozaqueu3@gmail.com</p>
@@ -749,6 +858,22 @@
                 cover.style.display = 'none';
             }, 300);
         }
+        
+        // === FUNÇÃO TOGGLE NARRATIVA (Para o novo Card de Propósito) ===
+        function toggleNarrative(cardElement) {
+            const details = cardElement.querySelector('#narrative-details-content');
+            const isExpanded = cardElement.getAttribute('aria-expanded') === 'true';
+
+            if (isExpanded) {
+                // Fechar
+                details.classList.add('hidden-content');
+                cardElement.setAttribute('aria-expanded', 'false');
+            } else {
+                // Abrir
+                details.classList.remove('hidden-content');
+                cardElement.setAttribute('aria-expanded', 'true');
+            }
+        }
 
         // === GITHUB PROJECTS ===
         const githubUser = 'Paulo968';
@@ -770,7 +895,7 @@
             description: "Automação RPA (Python + Selenium) do portal CREA-MG. Interface moderna (CustomTkinter), validação inteligente e +400% de produtividade em 7 filiais.",
             language: "Python",
             html_url: "https://github.com/Paulo968/crea-rpa-bot",
-            manual_url: "https://manual-crea-bot.netlify.app/", // ATUALIZADO
+            manual_url: "https://manual-crea-rpa-bot.netlify.app/", // ATUALIZADO COM NOVO LINK
             isFeatured: false
         };
 
