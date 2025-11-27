@@ -43,7 +43,8 @@
             --bg-card: #f6f8fa;
             --bg-card-hover: #eaeef2;
             --text-main: #24292f;
-            --text-muted: #57606a;
+            /* AJUSTE DE VISIBILIDADE: Escurecido para melhorar o contraste no modo claro */
+            --text-muted: #40464f; 
             --accent: #0969da;
             --accent-glow: rgba(9, 105, 218, 0.1);
             --border: #d0d7de;
@@ -107,11 +108,7 @@
         .btn-linkedin { color: var(--text-main); border-color: var(--border); }
         .btn-linkedin:hover { color: #fff !important; background: var(--linkedin) !important; border-color: var(--linkedin) !important; }
 
-        .btn-print {
-            background: var(--accent); color: white; border: none;
-            font-weight: 600; font-size: 0.9rem; padding: 0 1rem; width: auto; gap: 0.5rem;
-        }
-        .btn-print:hover { opacity: 0.9; background: var(--accent); color: white; }
+        /* REMOVIDO: Estilos para o botão PDF */
 
         .hide-mobile { display: none; }
         @media (min-width: 600px) { .hide-mobile { display: inline; } }
@@ -125,7 +122,13 @@
         }
 
         /* Layout */
-        .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+        /* MELHORIA RESPONSIVA: O padding do container garante espaçamento em telas muito pequenas */
+        .container { 
+            width: 100%; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 2rem 1.5rem 4rem; /* Padding horizontal de 1.5rem (24px) para respiro */
+        }
 
         /* Hero */
         .hero { margin-bottom: 3rem; animation: fadeIn 0.8s ease-out; }
@@ -154,8 +157,14 @@
 
         /* Tech Stack & Como posso te ajudar */
         .stack-section { margin-bottom: 3rem; }
-        .stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-        @media (min-width: 768px) { .stack-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        /* MELHORIA RESPONSIVA: Usando auto-fit e minmax para layout de grade fluida e adaptativa */
+        .stack-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit para preencher o espaço */
+            gap: 0.75rem; 
+        }
+        /* REMOVIDA: Media query anterior para .stack-grid, pois auto-fit/minmax faz o trabalho */
+        
         .stack-item {
             background: var(--bg-card); border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border);
             display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; transition: all 0.2s;
@@ -169,7 +178,13 @@
 
         /* Featured Project */
         .featured-wrapper { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
-        @media (min-width: 900px) { .featured-wrapper { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; } }
+        /* MELHORIA RESPONSIVA: Usando uma media query mais simples para garantir que a coluna lateral seja flexível */
+        @media (min-width: 900px) { 
+            .featured-wrapper { 
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); /* 55% / 45% flexível */
+                align-items: center; 
+            } 
+        }
         .featured-card {
             background: radial-gradient(circle at top left, rgba(47,129,247,0.18), transparent 55%), var(--bg-card);
             border-radius: 16px; border: 1px solid rgba(245, 158, 11, 0.2); padding: 1.5rem 1.6rem;
@@ -266,6 +281,7 @@
 
         /* Stats */
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 4rem; }
+        /* MELHORIA RESPONSIVA: Mantido media query para 4 colunas em telas maiores, mas com 2 colunas no default (mobile) */
         @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
         .stat-card {
             background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem;
@@ -301,7 +317,13 @@
 
         /* Projects & Timeline */
         .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 4rem; }
-        @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* MELHORIA RESPONSIVA: Usando auto-fit e minmax para os cartões de projeto */
+        @media (min-width: 768px) { 
+            .projects-grid { 
+                /* Se precisar de no mínimo 3 colunas em telas maiores: */
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            } 
+        }
         .project-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
             display: flex; flex-direction: column; justify-content: space-between; height: 100%; transition: all 0.2s; position: relative; z-index: 1;
@@ -401,9 +423,7 @@
                 <a href="https://github.com/Paulo968" target="_blank" rel="noopener noreferrer" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer" class="btn-icon btn-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <button class="btn-icon btn-print" onclick="window.print()">
-                    <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
-                </button>
+                <!-- REMOVIDO: Botão de PDF/Download -->
             </div>
         </div>
     </nav>
@@ -435,7 +455,8 @@
         <!-- NOVO: Como Posso Te Ajudar (Ideia de Evolução) -->
         <section class="stack-section reveal">
             <h2><i class="fas fa-handshake"></i> Como posso te ajudar?</h2>
-            <div class="stack-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <!-- AGORA FLUIDO: Usa auto-fit/minmax -->
+            <div class="stack-grid">
                 <div class="stack-item">
                     <div class="stack-title"><i class="fas fa-flask"></i> Automatizar & Inovar</div>
                     <div class="stack-detail">Automatizo rotinas chatas (fiscal, SAP, planilhas) com Python/RPA para focar no que realmente importa.</div>
@@ -454,6 +475,7 @@
         <!-- Tech Stack -->
         <section class="stack-section reveal">
             <h2><i class="fas fa-layer-group"></i> Tech Stack & Ferramentas</h2>
+            <!-- AGORA FLUIDO: Usa auto-fit/minmax -->
             <div class="stack-grid">
                 <div class="stack-item">
                     <div class="stack-title"><i class="fab fa-python"></i>Python & RPA</div>
