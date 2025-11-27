@@ -425,11 +425,7 @@
                 <a href="mailto:paulozaqueu3@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/paulo-zaqueu-762459187" target="_blank" rel="noopener noreferrer" class="btn-icon btn-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 
-                <!-- REMOVIDO: BOTÃO DE PDF/PRINT
-                <button class="btn-icon btn-print" onclick="window.print()">
-                    <i class="fas fa-download"></i> <span class="hide-mobile">PDF</span>
-                </button> 
-                -->
+                <!-- REMOVIDO: BOTÃO DE PDF/PRINT -->
             </div>
         </div>
     </nav>
@@ -458,7 +454,7 @@
             </div>
         </section>
 
-        <!-- NOVO: Destaque de Automação (Mova isso para o topo, é o seu maior impacto) -->
+        <!-- Destaque: Automação RPA CREA (O principal ativo) -->
         <section class="automation-highlight reveal">
             <div class="automation-highlight-header">
                 <i class="fas fa-chart-line"></i>
@@ -471,8 +467,12 @@
                  <a href="https://github.com/Paulo968/crea-rpa-bot" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-primary" style="background: var(--success); color: white;">
                     <i class="fab fa-python"></i> Ver Bot Python (GitHub)
                 </a>
+                <!-- ADICIONADO: Link direto para o Manual -->
+                <a href="manual.html" target="_blank" rel="noopener noreferrer" class="btn-cta btn-cta-ghost">
+                    <i class="fas fa-book"></i> Ver Manual de Uso
+                </a>
                 <a href="#projects" class="btn-cta btn-cta-ghost">
-                    <i class="fas fa-code-branch"></i> Ver outros projetos
+                    <i class="fas fa-code-branch"></i> Outros Projetos
                 </a>
             </div>
         </section>
@@ -762,8 +762,8 @@
             isFeatured: true
         };
 
-        // 2. Destaque Secundário (CREA BOT - Descrição Turbo baseada no README)
-        // O CREA Bot não precisa mais ser um "featured" de código, ele é o "Automation Highlight" agora.
+        // 2. Destaque Secundário (CREA BOT)
+        // Mantido apenas para referência de dados, mas o CREA Bot NÃO será mais incluído na grade de projetos abaixo
         const creaBotProject = {
             name: "crea-rpa-bot",
             description: "Automação RPA (Python + Selenium) do portal CREA-MG. Interface moderna (CustomTkinter), validação inteligente e +400% de produtividade em 7 filiais.",
@@ -775,22 +775,21 @@
 
         // 3. Projetos Manuais (Fallback)
         const manualProjects = [
-            // O crea-bot já está definido acima, então não precisamos repetir aqui se a lógica de carga estiver certa
             { name: "sap-reabastecimento-tool", description: "Ferramenta VBA + SAP WM para reposição de estoque.", language: "VBA", html_url: fallbackUrl },
             { name: "dashboard-logistica", description: "Painel de indicadores FEFO e Curva ABC.", language: "Analytics", html_url: fallbackUrl }
         ];
 
         async function loadProjects() {
             const container = document.getElementById('github-projects');
-            // Inicia a lista já com os dois projetos principais "travados" no topo
-            let finalProjects = [featuredProject, creaBotProject]; // Mantido para que o creaBot apareça na grade se o GitHub falhar.
+            // A lista inicial agora só tem o projeto Damas (garantido no topo da grade)
+            let finalProjects = [featuredProject]; 
 
             try {
-                // A API do GitHub tem limite de requests, então o fallback é importante.
+                // Tenta buscar os repositórios do GitHub
                 const res = await fetch(`https://api.github.com/users/${githubUser}/repos?sort=updated&per_page=5`);
                 if (res.ok) {
                     const githubData = await res.json();
-                    // Filtra para não duplicar o Damas nem o CREA Bot (pois já adicionamos manualmente com descrições melhores)
+                    // Filtra para remover Damas e CREA (pois já são destaques estáticos)
                     const filtered = githubData.filter(r => 
                         !r.name.toLowerCase().includes('damas') && 
                         !r.name.toLowerCase().includes('crea')
@@ -804,9 +803,9 @@
                 // Fallback se houver erro de rede
                 finalProjects = finalProjects.concat(manualProjects); 
             }
-            // Remove o CreaBot da lista para a renderização, pois ele já tem um destaque próprio no topo
-            const projectsToRender = finalProjects.filter(p => p.name !== creaBotProject.name);
-            renderProjects(projectsToRender, container);
+            
+            // Renderiza a lista de projetos (sem o CREA Bot)
+            renderProjects(finalProjects, container);
         }
 
         function renderProjects(projects, container) {
